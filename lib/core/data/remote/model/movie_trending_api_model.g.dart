@@ -29,7 +29,7 @@ _$_MovieTrendingDataResponse _$_$_MovieTrendingDataResponseFromJson(
   return _$_MovieTrendingDataResponse(
     id: json['id'] as int,
     vote_average: json['vote_average'] as num,
-    vote_count: json['vote_count'] as num,
+    vote_count: json['vote_count'] as int,
     name: json['original_title'] as String,
     overview: json['overview'] as String,
     poster_path: json['poster_path'] as String,

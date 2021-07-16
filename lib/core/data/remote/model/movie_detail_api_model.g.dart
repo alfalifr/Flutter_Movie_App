@@ -11,7 +11,7 @@ _$_MovieDetailResponse _$_$_MovieDetailResponseFromJson(
   return _$_MovieDetailResponse(
     id: json['id'] as int,
     vote_average: json['vote_average'] as num,
-    vote_count: json['vote_count'] as num,
+    vote_count: json['vote_count'] as int,
     name: json['original_title'] as String,
     tagline: json['tagline'] as String,
     overview: json['overview'] as String,

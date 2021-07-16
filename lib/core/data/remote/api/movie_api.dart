@@ -14,9 +14,18 @@ abstract class MovieApi {
   factory MovieApi({Dio? dio}) => _MovieApi(SiDio.getDefaultInstance(preExisting: dio));
 
   @GET("/${Const.KEY_TRENDING}/{type}/{time}")
-  Future<List<MovieTrendingResponse>> getTrendingList({
+  Future<MovieTrendingResponse> getTrendingList({
     @Path("type") String type = "all",
     @Path("time") String time = "day",
+  });
+
+  @GET("/${Const.KEY_TV}/popular")
+  Future<MovieTrendingResponse> getTvPopular({
+    @Query("page") int page = 1,
+  });
+  @GET("/${Const.KEY_MOVIE}/popular")
+  Future<MovieTrendingResponse> getMoviePopular({
+    @Query("page") int page = 1,
   });
 
   @GET("/${Const.KEY_TV}/{id}")

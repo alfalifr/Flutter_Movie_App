@@ -12,7 +12,7 @@ class MovieDetailResponse with _$MovieDetailResponse {
   const factory MovieDetailResponse({
     required int id,
     required num vote_average,
-    required num vote_count,
+    required int vote_count,
     @JsonKey(name: "original_title")
     //@JsonKey(name: "original_name")
     required String name,

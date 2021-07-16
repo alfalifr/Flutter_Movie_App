@@ -23,7 +23,7 @@ class _$MovieDetailResponseTearOff {
   _MovieDetailResponse call(
       {required int id,
       required num vote_average,
-      required num vote_count,
+      required int vote_count,
       @JsonKey(name: "original_title") required String name,
       required String tagline,
       required String overview,
@@ -65,7 +65,7 @@ const $MovieDetailResponse = _$MovieDetailResponseTearOff();
 mixin _$MovieDetailResponse {
   int get id => throw _privateConstructorUsedError;
   num get vote_average => throw _privateConstructorUsedError;
-  num get vote_count => throw _privateConstructorUsedError;
+  int get vote_count => throw _privateConstructorUsedError;
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;
   String get tagline => throw _privateConstructorUsedError;
@@ -97,7 +97,7 @@ abstract class $MovieDetailResponseCopyWith<$Res> {
   $Res call(
       {int id,
       num vote_average,
-      num vote_count,
+      int vote_count,
       @JsonKey(name: "original_title") String name,
       String tagline,
       String overview,
@@ -149,7 +149,7 @@ class _$MovieDetailResponseCopyWithImpl<$Res>
       vote_count: vote_count == freezed
           ? _value.vote_count
           : vote_count // ignore: cast_nullable_to_non_nullable
-              as num,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -208,7 +208,7 @@ abstract class _$MovieDetailResponseCopyWith<$Res>
   $Res call(
       {int id,
       num vote_average,
-      num vote_count,
+      int vote_count,
       @JsonKey(name: "original_title") String name,
       String tagline,
       String overview,
@@ -262,7 +262,7 @@ class __$MovieDetailResponseCopyWithImpl<$Res>
       vote_count: vote_count == freezed
           ? _value.vote_count
           : vote_count // ignore: cast_nullable_to_non_nullable
-              as num,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -338,7 +338,7 @@ class _$_MovieDetailResponse implements _MovieDetailResponse {
   @override
   final num vote_average;
   @override
-  final num vote_count;
+  final int vote_count;
   @override
   @JsonKey(name: "original_title")
   final String name;
@@ -447,7 +447,7 @@ abstract class _MovieDetailResponse implements MovieDetailResponse {
   const factory _MovieDetailResponse(
           {required int id,
           required num vote_average,
-          required num vote_count,
+          required int vote_count,
           @JsonKey(name: "original_title") required String name,
           required String tagline,
           required String overview,
@@ -469,7 +469,7 @@ abstract class _MovieDetailResponse implements MovieDetailResponse {
   @override
   num get vote_average => throw _privateConstructorUsedError;
   @override
-  num get vote_count => throw _privateConstructorUsedError;
+  int get vote_count => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;

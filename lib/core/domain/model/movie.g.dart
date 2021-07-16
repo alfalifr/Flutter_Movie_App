@@ -8,12 +8,22 @@ part of 'movie.dart';
 
 _$_Movie _$_$_MovieFromJson(Map<String, dynamic> json) {
   return _$_Movie(
-    json['movie_id'] as int,
-    name: json['name'] as String? ?? 'halo',
+    id: json['id'] as int,
+    voteAverage: json['voteAverage'] as num,
+    voteCount: json['voteCount'] as int,
+    name: json['name'] as String,
+    poster: ImgData.fromJson(json['poster'] as Map<String, dynamic>),
+    date: json['date'] as String,
+    type: json['type'] as String,
   );
 }
 
 Map<String, dynamic> _$_$_MovieToJson(_$_Movie instance) => <String, dynamic>{
-      'movie_id': instance.id,
+      'id': instance.id,
+      'voteAverage': instance.voteAverage,
+      'voteCount': instance.voteCount,
       'name': instance.name,
+      'poster': instance.poster,
+      'date': instance.date,
+      'type': instance.type,
     };

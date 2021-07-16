@@ -1,5 +1,8 @@
 
+import 'package:dicoding_movie_app/core/domain/model/img.dart';
+import 'package:dicoding_movie_app/ui/widget/img_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viewmodel/util/_consoles.dart';
 
 class SiImages {

@@ -20,10 +20,22 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
 class _$MovieTearOff {
   const _$MovieTearOff();
 
-  _Movie call(@JsonKey(name: "movie_id") int id, {String name = "halo"}) {
+  _Movie call(
+      {required int id,
+      required num voteAverage,
+      required int voteCount,
+      required String name,
+      required ImgData poster,
+      required String date,
+      required String type}) {
     return _Movie(
-      id,
+      id: id,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
       name: name,
+      poster: poster,
+      date: date,
+      type: type,
     );
   }
 
@@ -37,9 +49,14 @@ const $Movie = _$MovieTearOff();
 
 /// @nodoc
 mixin _$Movie {
-  @JsonKey(name: "movie_id")
   int get id => throw _privateConstructorUsedError;
+  num get voteAverage => throw _privateConstructorUsedError;
+  int get voteCount => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  ImgData get poster => throw _privateConstructorUsedError;
+  String get date =>
+      throw _privateConstructorUsedError; //required num popularity,
+  String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +67,16 @@ mixin _$Movie {
 abstract class $MovieCopyWith<$Res> {
   factory $MovieCopyWith(Movie value, $Res Function(Movie) then) =
       _$MovieCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: "movie_id") int id, String name});
+  $Res call(
+      {int id,
+      num voteAverage,
+      int voteCount,
+      String name,
+      ImgData poster,
+      String date,
+      String type});
+
+  $ImgDataCopyWith<$Res> get poster;
 }
 
 /// @nodoc
@@ -64,18 +90,50 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? voteAverage = freezed,
+    Object? voteCount = freezed,
     Object? name = freezed,
+    Object? poster = freezed,
+    Object? date = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      voteAverage: voteAverage == freezed
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
+              as num,
+      voteCount: voteCount == freezed
+          ? _value.voteCount
+          : voteCount // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      poster: poster == freezed
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as ImgData,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $ImgDataCopyWith<$Res> get poster {
+    return $ImgDataCopyWith<$Res>(_value.poster, (value) {
+      return _then(_value.copyWith(poster: value));
+    });
   }
 }
 
@@ -84,7 +142,17 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
   factory _$MovieCopyWith(_Movie value, $Res Function(_Movie) then) =
       __$MovieCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: "movie_id") int id, String name});
+  $Res call(
+      {int id,
+      num voteAverage,
+      int voteCount,
+      String name,
+      ImgData poster,
+      String date,
+      String type});
+
+  @override
+  $ImgDataCopyWith<$Res> get poster;
 }
 
 /// @nodoc
@@ -99,16 +167,41 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? voteAverage = freezed,
+    Object? voteCount = freezed,
     Object? name = freezed,
+    Object? poster = freezed,
+    Object? date = freezed,
+    Object? type = freezed,
   }) {
     return _then(_Movie(
-      id == freezed
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      voteAverage: voteAverage == freezed
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
+              as num,
+      voteCount: voteCount == freezed
+          ? _value.voteCount
+          : voteCount // ignore: cast_nullable_to_non_nullable
               as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      poster: poster == freezed
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as ImgData,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -117,21 +210,36 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Movie implements _Movie {
-  const _$_Movie(@JsonKey(name: "movie_id") this.id, {this.name = "halo"});
+  const _$_Movie(
+      {required this.id,
+      required this.voteAverage,
+      required this.voteCount,
+      required this.name,
+      required this.poster,
+      required this.date,
+      required this.type});
 
   factory _$_Movie.fromJson(Map<String, dynamic> json) =>
       _$_$_MovieFromJson(json);
 
   @override
-  @JsonKey(name: "movie_id")
   final int id;
-  @JsonKey(defaultValue: "halo")
+  @override
+  final num voteAverage;
+  @override
+  final int voteCount;
   @override
   final String name;
+  @override
+  final ImgData poster;
+  @override
+  final String date;
+  @override //required num popularity,
+  final String type;
 
   @override
   String toString() {
-    return 'Movie(id: $id, name: $name)';
+    return 'Movie(id: $id, voteAverage: $voteAverage, voteCount: $voteCount, name: $name, poster: $poster, date: $date, type: $type)';
   }
 
   @override
@@ -140,15 +248,32 @@ class _$_Movie implements _Movie {
         (other is _Movie &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.voteAverage, voteAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.voteAverage, voteAverage)) &&
+            (identical(other.voteCount, voteCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.voteCount, voteCount)) &&
             (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.poster, poster) ||
+                const DeepCollectionEquality().equals(other.poster, poster)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name);
+      const DeepCollectionEquality().hash(voteAverage) ^
+      const DeepCollectionEquality().hash(voteCount) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(poster) ^
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(type);
 
   @JsonKey(ignore: true)
   @override
@@ -162,16 +287,31 @@ class _$_Movie implements _Movie {
 }
 
 abstract class _Movie implements Movie {
-  const factory _Movie(@JsonKey(name: "movie_id") int id, {String name}) =
-      _$_Movie;
+  const factory _Movie(
+      {required int id,
+      required num voteAverage,
+      required int voteCount,
+      required String name,
+      required ImgData poster,
+      required String date,
+      required String type}) = _$_Movie;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$_Movie.fromJson;
 
   @override
-  @JsonKey(name: "movie_id")
   int get id => throw _privateConstructorUsedError;
   @override
+  num get voteAverage => throw _privateConstructorUsedError;
+  @override
+  int get voteCount => throw _privateConstructorUsedError;
+  @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  ImgData get poster => throw _privateConstructorUsedError;
+  @override
+  String get date => throw _privateConstructorUsedError;
+  @override //required num popularity,
+  String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MovieCopyWith<_Movie> get copyWith => throw _privateConstructorUsedError;

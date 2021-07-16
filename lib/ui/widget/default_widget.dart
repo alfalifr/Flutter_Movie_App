@@ -1,8 +1,7 @@
 
-import 'package:common/config/manifest.dart';
-import 'package:common/res/string/_string.dart';
-import 'package:common/res/theme/_theme.dart';
-import 'package:common/util/assets.dart';
+import 'package:dicoding_movie_app/res/colors.dart';
+import 'package:dicoding_movie_app/res/strings.dart';
+import 'package:dicoding_movie_app/res/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,7 @@ Widget defaultImg({
 }) => Container(
   width: width,
   height: height,
-  color: Manifest.theme.colorPrimary,
+  color: appTheme.primaryColor,
 );
 
 Widget defaultLoading({
@@ -68,7 +67,7 @@ Widget defaultNoData({
   child: Text(
     text ?? Strings.no_data,
     textAlign: TextAlign.center,
-    style: SibTextStyles.size_min_1_grey.copyWith(fontStyle: FontStyle.italic),
+    //style: SibTextStyles.size_min_1_grey.copyWith(fontStyle: FontStyle.italic),
   ),
 );
 

@@ -201,7 +201,7 @@ class _$MovieTrendingDataResponseTearOff {
   _MovieTrendingDataResponse call(
       {required int id,
       required num vote_average,
-      required num vote_count,
+      required int vote_count,
       @JsonKey(name: "original_title") required String name,
       required String overview,
       required String poster_path,
@@ -233,7 +233,7 @@ const $MovieTrendingDataResponse = _$MovieTrendingDataResponseTearOff();
 mixin _$MovieTrendingDataResponse {
   int get id => throw _privateConstructorUsedError;
   num get vote_average => throw _privateConstructorUsedError;
-  num get vote_count => throw _privateConstructorUsedError;
+  int get vote_count => throw _privateConstructorUsedError;
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
@@ -257,7 +257,7 @@ abstract class $MovieTrendingDataResponseCopyWith<$Res> {
   $Res call(
       {int id,
       num vote_average,
-      num vote_count,
+      int vote_count,
       @JsonKey(name: "original_title") String name,
       String overview,
       String poster_path,
@@ -299,7 +299,7 @@ class _$MovieTrendingDataResponseCopyWithImpl<$Res>
       vote_count: vote_count == freezed
           ? _value.vote_count
           : vote_count // ignore: cast_nullable_to_non_nullable
-              as num,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -338,7 +338,7 @@ abstract class _$MovieTrendingDataResponseCopyWith<$Res>
   $Res call(
       {int id,
       num vote_average,
-      num vote_count,
+      int vote_count,
       @JsonKey(name: "original_title") String name,
       String overview,
       String poster_path,
@@ -383,7 +383,7 @@ class __$MovieTrendingDataResponseCopyWithImpl<$Res>
       vote_count: vote_count == freezed
           ? _value.vote_count
           : vote_count // ignore: cast_nullable_to_non_nullable
-              as num,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -434,7 +434,7 @@ class _$_MovieTrendingDataResponse implements _MovieTrendingDataResponse {
   @override
   final num vote_average;
   @override
-  final num vote_count;
+  final int vote_count;
   @override
   @JsonKey(name: "original_title")
   final String name;
@@ -515,7 +515,7 @@ abstract class _MovieTrendingDataResponse implements MovieTrendingDataResponse {
   const factory _MovieTrendingDataResponse(
       {required int id,
       required num vote_average,
-      required num vote_count,
+      required int vote_count,
       @JsonKey(name: "original_title") required String name,
       required String overview,
       required String poster_path,
@@ -531,7 +531,7 @@ abstract class _MovieTrendingDataResponse implements MovieTrendingDataResponse {
   @override
   num get vote_average => throw _privateConstructorUsedError;
   @override
-  num get vote_count => throw _privateConstructorUsedError;
+  int get vote_count => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;

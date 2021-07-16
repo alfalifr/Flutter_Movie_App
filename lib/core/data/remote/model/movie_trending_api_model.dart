@@ -30,8 +30,8 @@ class MovieTrendingDataResponse with _$MovieTrendingDataResponse {
     required String media_type,
   }) = _MovieTrendingDataResponse;
 
-  factory MovieTrendingDataResponse.fromJson(Map<String, dynamic> map) //= _MovieTrendingDataResponse.fromJson;
-///*
+  factory MovieTrendingDataResponse.fromJson(Map<String, dynamic> map) = _MovieTrendingDataResponse.fromJson;
+/*
   {
     // This is because Dart's json_serializable can't have multiple date, not like Java GSON.
     if(!map.containsKey("original_title")) {
