@@ -29,6 +29,7 @@ class ListVm extends AsyncVm {
   LiveData<List<Movie>> get trendingList => _trendingList;
 
   String? _currentType;
+  String? get currentType => _currentType;
 
   @override
   List<LiveData> get liveDatas => [_popularList, _trendingList];
@@ -50,11 +51,11 @@ class ListVm extends AsyncVm {
 
       if(res is Success<List<Movie>>) {
         final data = res.data;
+        _currentType = type;
         _popularList.value = data;
       } else {
         return res as Fail;
       }
-      _currentType = type;
     });
   }
 

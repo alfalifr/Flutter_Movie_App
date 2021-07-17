@@ -1,10 +1,10 @@
 import 'package:dicoding_movie_app/core/data/remote/model/movie_detail_api_model.dart';
 import 'package:dicoding_movie_app/core/data/remote/model/movie_trending_api_model.dart';
 import 'package:dicoding_movie_app/core/domain/model/img.dart';
+import 'package:dicoding_movie_app/util/type_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'movie.freezed.dart';
-part 'movie.g.dart';
 
 @freezed
 class Movie with _$Movie {
@@ -14,11 +14,11 @@ class Movie with _$Movie {
     required int voteCount,
     required String name,
     required ImgData poster,
-    required String date,
+    required DateTime date,
     //required num popularity,
     required String type,
   }) = _Movie;
-  factory Movie.fromJson(Map<String, dynamic> map) = _Movie.fromJson;
+  //factory Movie.fromJson(Map<String, dynamic> map) = _Movie.fromJson;
 
   factory Movie.fromDataResponse(MovieTrendingDataResponse response) => Movie(
     id: response.id,
@@ -29,7 +29,7 @@ class Movie with _$Movie {
       link: response.poster_path,
       isLocal: false,
     ),
-    date: response.date,
+    date: parseDate(response.date),
     type: response.media_type,
   );
 
@@ -44,7 +44,7 @@ class Movie with _$Movie {
       link: response.poster_path,
       isLocal: false,
     ),
-    date: response.date,
+    date: parseDate(response.date),
     type: type,
   );
 

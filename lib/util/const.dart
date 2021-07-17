@@ -1,6 +1,8 @@
 import 'package:dicoding_movie_app/util/credentials.dart';
 
 class Const {
+  Const._();
+
   static const API_ROOT = "https://api.themoviedb.org/3";
   static const API_KEY = Creds.API_KEY;
 

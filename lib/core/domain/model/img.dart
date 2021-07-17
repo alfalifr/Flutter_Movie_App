@@ -1,7 +1,6 @@
 import 'package:dicoding_movie_app/core/data/remote/model/movie_images_api_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'img.g.dart';
 part 'img.freezed.dart';
 
 @freezed
@@ -13,7 +12,7 @@ class ImgData with _$ImgData {
     num? width,
     num? height,
   }) = _ImgData;
-  factory ImgData.fromJson(Map<String, dynamic> map) = _ImgData.fromJson;
+  //factory ImgData.fromJson(Map<String, dynamic> map) = _ImgData.fromJson;
   factory ImgData.fromResponse(MovieImageDataResponse response) => ImgData(
     link: response.file_path,
     isLocal: false,

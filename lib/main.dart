@@ -1,12 +1,18 @@
+import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
+import 'package:dicoding_movie_app/di/vm_di.dart';
+import 'package:dicoding_movie_app/res/theme.dart';
+import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
+import 'package:dicoding_movie_app/ui/widget/carousel_trending.dart';
+import 'package:dicoding_movie_app/ui/widget/movie_list_widget.dart';
+import 'package:dicoding_movie_app/util/const.dart';
+import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:viewmodel/ui/base/view_model.dart';
 
-import 'core/domain/model/movie.dart';
 
-
-void main() {
-  Movie(
-    1
-  );
+void main() async {
+  await initializeDateFormatting("id_ID");
   runApp(MyApp());
 }
 
@@ -16,23 +22,50 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      theme: appTheme,
+      home: Scaffold(
+        body: ViewModelProvider(
+          creators: [
+            (ctx) => VmDi.listVm,
+          ],
+          child: ListPage(),
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      /*
+      home: Scaffold(
+        body: Column(
+          children: [
+            Container(
+              height: 50,
+              width: 150,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFBA2121),
+                    Color(0xFF07FF00),
+                  ]
+                )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Container(
+              height: 50,
+              width: 150,
+              color: getColorPointFromLinearGradient(
+                first: Color(0xFFBA2121),
+                last: Color(0xFF07FF00),
+                point: 0.6,
+              ),
+            )
+          ],
+        ),
+      ),
+       */
     );
   }
 }
 
+/*
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -117,3 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+ */

@@ -44,9 +44,17 @@ class SiImages {
   }) {
     final usedFit = fit ?? BoxFit.cover;
     if(!data.isLocal) {
-      return buildImgNetwork(data.link, fit: usedFit, width: width, height: height,);
+      return buildImgNetwork(
+        data.link, fit: usedFit,
+        width: width ?? data.width?.toDouble(),
+        height: height ?? data.height?.toDouble(),
+      );
     } else {
-      return get(data.link, package: data.package, fit: usedFit, width: width, height: height,);
+      return get(
+        data.link, package: data.package, fit: usedFit,
+        width: width ?? data.width?.toDouble(),
+        height: height ?? data.height?.toDouble(),
+      );
     }
   }
 }

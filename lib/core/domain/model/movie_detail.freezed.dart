@@ -12,10 +12,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MovieDetail _$MovieDetailFromJson(Map<String, dynamic> json) {
-  return _MovieDetail.fromJson(json);
-}
-
 /// @nodoc
 class _$MovieDetailTearOff {
   const _$MovieDetailTearOff();
@@ -45,10 +41,6 @@ class _$MovieDetailTearOff {
       logos: logos,
       posters: posters,
     );
-  }
-
-  MovieDetail fromJson(Map<String, Object> json) {
-    return MovieDetail.fromJson(json);
   }
 }
 
@@ -81,7 +73,6 @@ mixin _$MovieDetail {
   List<ImgData> get logos => throw _privateConstructorUsedError;
   List<ImgData> get posters => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MovieDetailCopyWith<MovieDetail> get copyWith =>
       throw _privateConstructorUsedError;
@@ -284,7 +275,7 @@ class __$MovieDetailCopyWithImpl<$Res> extends _$MovieDetailCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_MovieDetail implements _MovieDetail {
   const _$_MovieDetail(
       {required this.movie,
@@ -298,9 +289,6 @@ class _$_MovieDetail implements _MovieDetail {
       required this.backdrops,
       required this.logos,
       required this.posters});
-
-  factory _$_MovieDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_MovieDetailFromJson(json);
 
   @override /*
     required int id,
@@ -392,11 +380,6 @@ class _$_MovieDetail implements _MovieDetail {
   @override
   _$MovieDetailCopyWith<_MovieDetail> get copyWith =>
       __$MovieDetailCopyWithImpl<_MovieDetail>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_MovieDetailToJson(this);
-  }
 }
 
 abstract class _MovieDetail implements MovieDetail {
@@ -412,9 +395,6 @@ abstract class _MovieDetail implements MovieDetail {
       required List<ImgData> backdrops,
       required List<ImgData> logos,
       required List<ImgData> posters}) = _$_MovieDetail;
-
-  factory _MovieDetail.fromJson(Map<String, dynamic> json) =
-      _$_MovieDetail.fromJson;
 
   @override /*
     required int id,
@@ -453,10 +433,6 @@ abstract class _MovieDetail implements MovieDetail {
       throw _privateConstructorUsedError;
 }
 
-Company _$CompanyFromJson(Map<String, dynamic> json) {
-  return _Company.fromJson(json);
-}
-
 /// @nodoc
 class _$CompanyTearOff {
   const _$CompanyTearOff();
@@ -469,10 +445,6 @@ class _$CompanyTearOff {
       name: name,
     );
   }
-
-  Company fromJson(Map<String, Object> json) {
-    return Company.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -484,7 +456,6 @@ mixin _$Company {
   ImgData get logo => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CompanyCopyWith<Company> get copyWith => throw _privateConstructorUsedError;
 }
@@ -580,12 +551,9 @@ class __$CompanyCopyWithImpl<$Res> extends _$CompanyCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Company implements _Company {
   const _$_Company({required this.id, required this.logo, required this.name});
-
-  factory _$_Company.fromJson(Map<String, dynamic> json) =>
-      _$_$_CompanyFromJson(json);
 
   @override
   final int id;
@@ -622,11 +590,6 @@ class _$_Company implements _Company {
   @override
   _$CompanyCopyWith<_Company> get copyWith =>
       __$CompanyCopyWithImpl<_Company>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_CompanyToJson(this);
-  }
 }
 
 abstract class _Company implements Company {
@@ -634,8 +597,6 @@ abstract class _Company implements Company {
       {required int id,
       required ImgData logo,
       required String name}) = _$_Company;
-
-  factory _Company.fromJson(Map<String, dynamic> json) = _$_Company.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
@@ -647,10 +608,6 @@ abstract class _Company implements Company {
   @JsonKey(ignore: true)
   _$CompanyCopyWith<_Company> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-Cast _$CastFromJson(Map<String, dynamic> json) {
-  return _Cast.fromJson(json);
 }
 
 /// @nodoc
@@ -669,10 +626,6 @@ class _$CastTearOff {
       character: character,
     );
   }
-
-  Cast fromJson(Map<String, Object> json) {
-    return Cast.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -685,7 +638,6 @@ mixin _$Cast {
   ImgData get profile => throw _privateConstructorUsedError;
   String get character => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CastCopyWith<Cast> get copyWith => throw _privateConstructorUsedError;
 }
@@ -791,16 +743,13 @@ class __$CastCopyWithImpl<$Res> extends _$CastCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Cast implements _Cast {
   const _$_Cast(
       {required this.id,
       required this.name,
       required this.profile,
       required this.character});
-
-  factory _$_Cast.fromJson(Map<String, dynamic> json) =>
-      _$_$_CastFromJson(json);
 
   @override
   final int id;
@@ -844,11 +793,6 @@ class _$_Cast implements _Cast {
   @override
   _$CastCopyWith<_Cast> get copyWith =>
       __$CastCopyWithImpl<_Cast>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_CastToJson(this);
-  }
 }
 
 abstract class _Cast implements Cast {
@@ -857,8 +801,6 @@ abstract class _Cast implements Cast {
       required String name,
       required ImgData profile,
       required String character}) = _$_Cast;
-
-  factory _Cast.fromJson(Map<String, dynamic> json) = _$_Cast.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;

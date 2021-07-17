@@ -9,6 +9,13 @@ const red = Color(0xFFEA0C4B);
 
 const grey_1 = Color(0xFFDCDCDC);
 
+const black_trans_1 = Color(0xCE000000);
+const black_trans_2 = Color(0xA1000000);
+const black_trans_3 = Color(0x79000000);
+const black_trans_4 = Color(0x52000000);
+const black_trans_5 = Color(0x2C000000);
+const black_trans_6 = Color(0xD000000);
+
 
 const primarySwatch = const MaterialColor(
   0xFF1EA141,

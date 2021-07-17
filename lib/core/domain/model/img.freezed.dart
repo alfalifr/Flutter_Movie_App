@@ -12,10 +12,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ImgData _$ImgDataFromJson(Map<String, dynamic> json) {
-  return _ImgData.fromJson(json);
-}
-
 /// @nodoc
 class _$ImgDataTearOff {
   const _$ImgDataTearOff();
@@ -34,10 +30,6 @@ class _$ImgDataTearOff {
       height: height,
     );
   }
-
-  ImgData fromJson(Map<String, Object> json) {
-    return ImgData.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -51,7 +43,6 @@ mixin _$ImgData {
   num? get width => throw _privateConstructorUsedError;
   num? get height => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ImgDataCopyWith<ImgData> get copyWith => throw _privateConstructorUsedError;
 }
@@ -157,7 +148,7 @@ class __$ImgDataCopyWithImpl<$Res> extends _$ImgDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_ImgData implements _ImgData {
   const _$_ImgData(
       {required this.link,
@@ -165,9 +156,6 @@ class _$_ImgData implements _ImgData {
       required this.isLocal,
       this.width,
       this.height});
-
-  factory _$_ImgData.fromJson(Map<String, dynamic> json) =>
-      _$_$_ImgDataFromJson(json);
 
   @override
   final String link;
@@ -216,11 +204,6 @@ class _$_ImgData implements _ImgData {
   @override
   _$ImgDataCopyWith<_ImgData> get copyWith =>
       __$ImgDataCopyWithImpl<_ImgData>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_ImgDataToJson(this);
-  }
 }
 
 abstract class _ImgData implements ImgData {
@@ -230,8 +213,6 @@ abstract class _ImgData implements ImgData {
       required bool isLocal,
       num? width,
       num? height}) = _$_ImgData;
-
-  factory _ImgData.fromJson(Map<String, dynamic> json) = _$_ImgData.fromJson;
 
   @override
   String get link => throw _privateConstructorUsedError;

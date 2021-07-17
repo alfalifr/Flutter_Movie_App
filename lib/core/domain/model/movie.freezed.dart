@@ -12,10 +12,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Movie _$MovieFromJson(Map<String, dynamic> json) {
-  return _Movie.fromJson(json);
-}
-
 /// @nodoc
 class _$MovieTearOff {
   const _$MovieTearOff();
@@ -26,7 +22,7 @@ class _$MovieTearOff {
       required int voteCount,
       required String name,
       required ImgData poster,
-      required String date,
+      required DateTime date,
       required String type}) {
     return _Movie(
       id: id,
@@ -37,10 +33,6 @@ class _$MovieTearOff {
       date: date,
       type: type,
     );
-  }
-
-  Movie fromJson(Map<String, Object> json) {
-    return Movie.fromJson(json);
   }
 }
 
@@ -54,11 +46,10 @@ mixin _$Movie {
   int get voteCount => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   ImgData get poster => throw _privateConstructorUsedError;
-  String get date =>
+  DateTime get date =>
       throw _privateConstructorUsedError; //required num popularity,
   String get type => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MovieCopyWith<Movie> get copyWith => throw _privateConstructorUsedError;
 }
@@ -73,7 +64,7 @@ abstract class $MovieCopyWith<$Res> {
       int voteCount,
       String name,
       ImgData poster,
-      String date,
+      DateTime date,
       String type});
 
   $ImgDataCopyWith<$Res> get poster;
@@ -121,7 +112,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -148,7 +139,7 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       int voteCount,
       String name,
       ImgData poster,
-      String date,
+      DateTime date,
       String type});
 
   @override
@@ -198,7 +189,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -208,7 +199,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Movie implements _Movie {
   const _$_Movie(
       {required this.id,
@@ -218,9 +209,6 @@ class _$_Movie implements _Movie {
       required this.poster,
       required this.date,
       required this.type});
-
-  factory _$_Movie.fromJson(Map<String, dynamic> json) =>
-      _$_$_MovieFromJson(json);
 
   @override
   final int id;
@@ -233,7 +221,7 @@ class _$_Movie implements _Movie {
   @override
   final ImgData poster;
   @override
-  final String date;
+  final DateTime date;
   @override //required num popularity,
   final String type;
 
@@ -279,11 +267,6 @@ class _$_Movie implements _Movie {
   @override
   _$MovieCopyWith<_Movie> get copyWith =>
       __$MovieCopyWithImpl<_Movie>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_MovieToJson(this);
-  }
 }
 
 abstract class _Movie implements Movie {
@@ -293,10 +276,8 @@ abstract class _Movie implements Movie {
       required int voteCount,
       required String name,
       required ImgData poster,
-      required String date,
+      required DateTime date,
       required String type}) = _$_Movie;
-
-  factory _Movie.fromJson(Map<String, dynamic> json) = _$_Movie.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
@@ -309,7 +290,7 @@ abstract class _Movie implements Movie {
   @override
   ImgData get poster => throw _privateConstructorUsedError;
   @override
-  String get date => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
   @override //required num popularity,
   String get type => throw _privateConstructorUsedError;
   @override

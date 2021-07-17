@@ -3,6 +3,7 @@ import 'package:dicoding_movie_app/core/data/remote/model/movie_detail_api_model
 import 'package:dicoding_movie_app/core/data/remote/model/movie_images_api_model.dart';
 import 'package:dicoding_movie_app/core/data/remote/model/movie_trending_api_model.dart';
 import 'package:dicoding_movie_app/core/data/remote/source/movie_src.dart';
+import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie_detail.dart';
 import 'package:dicoding_movie_app/core/domain/repo/movie_repo.dart';
@@ -93,4 +94,27 @@ class MovieRepoImpl extends MovieRepo {
     }
     return Fail(msg: "Error calling `getTvDetail()`, resDetail= ${resDetail.runtimeType} resImg= ${resImg.runtimeType} resCast= ${resCast.runtimeType}");
   }
+}
+
+
+class MovieRepoDummy extends MovieRepo {
+  MovieRepoDummy._();
+  static final obj = MovieRepoDummy._();
+
+  @override
+  Future<Result<MovieDetail>> getMovieDetail({required int id}) async => Success(
+    dummyMovieDetailList.firstWhere((e) => e.movie.id == id)
+  );
+  @override
+  Future<Result<MovieDetail>> getTvDetail({required int id}) async => Success(
+      dummyMovieDetailList.firstWhere((e) => e.movie.id == id)
+  );
+
+  @override
+  Future<Result<List<Movie>>> getMoviePopular({int page = 1}) async => Success(dummyMovieList);
+  @override
+  Future<Result<List<Movie>>> getTvPopular({int page = 1}) async => Success(dummyMovieList);
+
+  @override
+  Future<Result<List<Movie>>> getTrending({String type = "all", String time = "day"}) async => Success(dummyTrendingList);
 }

@@ -5,7 +5,6 @@ import 'package:dicoding_movie_app/core/domain/model/img.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'movie_detail.g.dart';
 part 'movie_detail.freezed.dart';
 
 @freezed
@@ -35,7 +34,7 @@ class MovieDetail with _$MovieDetail {
     required List<ImgData> posters,
   }) = _MovieDetail;
 
-  factory MovieDetail.fromJson(Map<String, dynamic> map) = _MovieDetail.fromJson;
+  //factory MovieDetail.fromJson(Map<String, dynamic> map) = _MovieDetail.fromJson;
 
   factory MovieDetail.fromResponse({
     required MovieDetailResponse detail,
@@ -74,7 +73,7 @@ class Company with _$Company {
     required ImgData logo,
     required String name,
   }) = _Company;
-  factory Company.fromJson(Map<String, dynamic> map) = _Company.fromJson;
+  //factory Company.fromJson(Map<String, dynamic> map) = _Company.fromJson;
   factory Company.fromResponse(MovieDetailCompanyResponse response) => Company(
     id: response.id,
     logo: ImgData(
@@ -93,7 +92,7 @@ class Cast with _$Cast {
     required ImgData profile,
     required String character,
   }) = _Cast;
-  factory Cast.fromJson(Map<String, dynamic> map) = _Cast.fromJson;
+  //factory Cast.fromJson(Map<String, dynamic> map) = _Cast.fromJson;
   factory Cast.fromResponse(MovieCastResponse response) => Cast(
     id: response.id,
     name: response.name,
