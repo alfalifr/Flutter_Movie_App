@@ -1,5 +1,8 @@
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
+import 'package:dicoding_movie_app/di/vm_di.dart';
 import 'package:dicoding_movie_app/res/dimes.dart';
+import 'package:dicoding_movie_app/ui/page/detail/detail_page.dart';
+import 'package:dicoding_movie_app/ui/page/detail/detail_vm.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_vm.dart';
 import 'package:dicoding_movie_app/ui/widget/_template_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/carousel_trending.dart';
@@ -165,9 +168,11 @@ class _ListPageState
             children: [
               SingleListPage(type: popularTypes[0], vm: vm!,
                 controller: scrollController, currentOffset: scrollOffsetContainer,
+                onItemClick: _toDetailPage,
               ),
               SingleListPage(type: popularTypes[1], vm: vm!,
                 controller: scrollController, currentOffset: scrollOffsetContainer,
+                onItemClick: _toDetailPage,
               ),
             ],
           ),
@@ -176,13 +181,23 @@ class _ListPageState
     );
   }
 
+  void _toDetailPage(Movie movie) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (ctx) => ViewModelProvider(
+        creators: [
+          (ctx) => VmDi.detailVm,
+        ],
+        child: DetailPage(movie: movie),
+      ),
+    ));
+  }
+
   @override
   void dispose() {
     _isActive = false;
     pageController.dispose();
     scrollController.dispose();
     currentPage.dispose();
-
     super.dispose();
   }
 
@@ -198,12 +213,14 @@ class SingleListPage extends StatelessWidget {
   final ListVm vm;
   final ScrollController? controller;
   final Var<double>? currentOffset;
+  final void Function(Movie)? onItemClick;
 
   SingleListPage({
     required this.type,
     required this.vm,
     this.controller,
     this.currentOffset,
+    this.onItemClick,
   });
 
   @override
@@ -220,7 +237,15 @@ class SingleListPage extends StatelessWidget {
         return data != null && vm.currentType == type ? GridView.builder(
           controller: controller,
           //physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (ctx, i) => ItemPopular.fromData(data[i]),
+          itemBuilder: (ctx, i) => InkWell(
+            onTap: onItemClick != null
+                ? () => onItemClick!.call(data[i])
+                : null,
+            child: Material(
+              color: Colors.transparent,
+              child: ItemPopular.fromData(data[i]),
+            ),
+          ),
           itemCount: data.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

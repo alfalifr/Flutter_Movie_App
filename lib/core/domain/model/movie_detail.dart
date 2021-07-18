@@ -29,6 +29,7 @@ class MovieDetail with _$MovieDetail {
     required List<String> genres,
     required List<Company> productionCompanies,
     required List<Cast> casts,
+    required List<Crew> crews,
     required List<ImgData> backdrops,
     required List<ImgData> logos,
     required List<ImgData> posters,
@@ -46,6 +47,7 @@ class MovieDetail with _$MovieDetail {
     final genres = detail.genres.map((e) => e.name).toList(growable: false);
     final companies = detail.production_companies.map((e) => Company.fromResponse(e)).toList(growable: false);
     final casts = credits.cast.map((e) => Cast.fromResponse(e)).toList(growable: false);
+    final crews = credits.crew.map((e) => Crew.fromResponse(e)).toList(growable: false);
     final posters = images.posters.map((e) => ImgData.fromResponse(e)).toList(growable: false);
     final logos = images.logos.map((e) => ImgData.fromResponse(e)).toList(growable: false);
     final backdrops = images.backdrops.map((e) => ImgData.fromResponse(e)).toList(growable: false);
@@ -59,6 +61,7 @@ class MovieDetail with _$MovieDetail {
       genres: genres,
       productionCompanies: companies,
       casts: casts,
+      crews: crews,
       backdrops: backdrops,
       logos: logos,
       posters: posters,
@@ -101,5 +104,24 @@ class Cast with _$Cast {
       isLocal: false,
     ),
     character: response.character,
+  );
+}
+
+@freezed
+class Crew with _$Crew {
+  const factory Crew({
+    required int id,
+    required String name,
+    required ImgData profile,
+    required String department,
+  }) = _Crew;
+  factory Crew.fromResponse(MovieCrewResponse response) => Crew(
+    id: response.id,
+    name: response.name,
+    profile: ImgData(
+      link: response.profile_path,
+      isLocal: false,
+    ),
+    department: response.known_for_department,
   );
 }

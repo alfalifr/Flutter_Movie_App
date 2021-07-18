@@ -25,6 +25,7 @@ class _$MovieDetailTearOff {
       required List<String> genres,
       required List<Company> productionCompanies,
       required List<Cast> casts,
+      required List<Crew> crews,
       required List<ImgData> backdrops,
       required List<ImgData> logos,
       required List<ImgData> posters}) {
@@ -37,6 +38,7 @@ class _$MovieDetailTearOff {
       genres: genres,
       productionCompanies: productionCompanies,
       casts: casts,
+      crews: crews,
       backdrops: backdrops,
       logos: logos,
       posters: posters,
@@ -69,6 +71,7 @@ mixin _$MovieDetail {
   List<String> get genres => throw _privateConstructorUsedError;
   List<Company> get productionCompanies => throw _privateConstructorUsedError;
   List<Cast> get casts => throw _privateConstructorUsedError;
+  List<Crew> get crews => throw _privateConstructorUsedError;
   List<ImgData> get backdrops => throw _privateConstructorUsedError;
   List<ImgData> get logos => throw _privateConstructorUsedError;
   List<ImgData> get posters => throw _privateConstructorUsedError;
@@ -92,6 +95,7 @@ abstract class $MovieDetailCopyWith<$Res> {
       List<String> genres,
       List<Company> productionCompanies,
       List<Cast> casts,
+      List<Crew> crews,
       List<ImgData> backdrops,
       List<ImgData> logos,
       List<ImgData> posters});
@@ -117,6 +121,7 @@ class _$MovieDetailCopyWithImpl<$Res> implements $MovieDetailCopyWith<$Res> {
     Object? genres = freezed,
     Object? productionCompanies = freezed,
     Object? casts = freezed,
+    Object? crews = freezed,
     Object? backdrops = freezed,
     Object? logos = freezed,
     Object? posters = freezed,
@@ -154,6 +159,10 @@ class _$MovieDetailCopyWithImpl<$Res> implements $MovieDetailCopyWith<$Res> {
           ? _value.casts
           : casts // ignore: cast_nullable_to_non_nullable
               as List<Cast>,
+      crews: crews == freezed
+          ? _value.crews
+          : crews // ignore: cast_nullable_to_non_nullable
+              as List<Crew>,
       backdrops: backdrops == freezed
           ? _value.backdrops
           : backdrops // ignore: cast_nullable_to_non_nullable
@@ -193,6 +202,7 @@ abstract class _$MovieDetailCopyWith<$Res>
       List<String> genres,
       List<Company> productionCompanies,
       List<Cast> casts,
+      List<Crew> crews,
       List<ImgData> backdrops,
       List<ImgData> logos,
       List<ImgData> posters});
@@ -221,6 +231,7 @@ class __$MovieDetailCopyWithImpl<$Res> extends _$MovieDetailCopyWithImpl<$Res>
     Object? genres = freezed,
     Object? productionCompanies = freezed,
     Object? casts = freezed,
+    Object? crews = freezed,
     Object? backdrops = freezed,
     Object? logos = freezed,
     Object? posters = freezed,
@@ -258,6 +269,10 @@ class __$MovieDetailCopyWithImpl<$Res> extends _$MovieDetailCopyWithImpl<$Res>
           ? _value.casts
           : casts // ignore: cast_nullable_to_non_nullable
               as List<Cast>,
+      crews: crews == freezed
+          ? _value.crews
+          : crews // ignore: cast_nullable_to_non_nullable
+              as List<Crew>,
       backdrops: backdrops == freezed
           ? _value.backdrops
           : backdrops // ignore: cast_nullable_to_non_nullable
@@ -286,6 +301,7 @@ class _$_MovieDetail implements _MovieDetail {
       required this.genres,
       required this.productionCompanies,
       required this.casts,
+      required this.crews,
       required this.backdrops,
       required this.logos,
       required this.posters});
@@ -316,6 +332,8 @@ class _$_MovieDetail implements _MovieDetail {
   @override
   final List<Cast> casts;
   @override
+  final List<Crew> crews;
+  @override
   final List<ImgData> backdrops;
   @override
   final List<ImgData> logos;
@@ -324,7 +342,7 @@ class _$_MovieDetail implements _MovieDetail {
 
   @override
   String toString() {
-    return 'MovieDetail(movie: $movie, tagline: $tagline, overview: $overview, homepage: $homepage, duration: $duration, genres: $genres, productionCompanies: $productionCompanies, casts: $casts, backdrops: $backdrops, logos: $logos, posters: $posters)';
+    return 'MovieDetail(movie: $movie, tagline: $tagline, overview: $overview, homepage: $homepage, duration: $duration, genres: $genres, productionCompanies: $productionCompanies, casts: $casts, crews: $crews, backdrops: $backdrops, logos: $logos, posters: $posters)';
   }
 
   @override
@@ -352,6 +370,8 @@ class _$_MovieDetail implements _MovieDetail {
                     .equals(other.productionCompanies, productionCompanies)) &&
             (identical(other.casts, casts) ||
                 const DeepCollectionEquality().equals(other.casts, casts)) &&
+            (identical(other.crews, crews) ||
+                const DeepCollectionEquality().equals(other.crews, crews)) &&
             (identical(other.backdrops, backdrops) ||
                 const DeepCollectionEquality()
                     .equals(other.backdrops, backdrops)) &&
@@ -372,6 +392,7 @@ class _$_MovieDetail implements _MovieDetail {
       const DeepCollectionEquality().hash(genres) ^
       const DeepCollectionEquality().hash(productionCompanies) ^
       const DeepCollectionEquality().hash(casts) ^
+      const DeepCollectionEquality().hash(crews) ^
       const DeepCollectionEquality().hash(backdrops) ^
       const DeepCollectionEquality().hash(logos) ^
       const DeepCollectionEquality().hash(posters);
@@ -392,6 +413,7 @@ abstract class _MovieDetail implements MovieDetail {
       required List<String> genres,
       required List<Company> productionCompanies,
       required List<Cast> casts,
+      required List<Crew> crews,
       required List<ImgData> backdrops,
       required List<ImgData> logos,
       required List<ImgData> posters}) = _$_MovieDetail;
@@ -421,6 +443,8 @@ abstract class _MovieDetail implements MovieDetail {
   List<Company> get productionCompanies => throw _privateConstructorUsedError;
   @override
   List<Cast> get casts => throw _privateConstructorUsedError;
+  @override
+  List<Crew> get crews => throw _privateConstructorUsedError;
   @override
   List<ImgData> get backdrops => throw _privateConstructorUsedError;
   @override
@@ -813,4 +837,209 @@ abstract class _Cast implements Cast {
   @override
   @JsonKey(ignore: true)
   _$CastCopyWith<_Cast> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$CrewTearOff {
+  const _$CrewTearOff();
+
+  _Crew call(
+      {required int id,
+      required String name,
+      required ImgData profile,
+      required String department}) {
+    return _Crew(
+      id: id,
+      name: name,
+      profile: profile,
+      department: department,
+    );
+  }
+}
+
+/// @nodoc
+const $Crew = _$CrewTearOff();
+
+/// @nodoc
+mixin _$Crew {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  ImgData get profile => throw _privateConstructorUsedError;
+  String get department => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CrewCopyWith<Crew> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CrewCopyWith<$Res> {
+  factory $CrewCopyWith(Crew value, $Res Function(Crew) then) =
+      _$CrewCopyWithImpl<$Res>;
+  $Res call({int id, String name, ImgData profile, String department});
+
+  $ImgDataCopyWith<$Res> get profile;
+}
+
+/// @nodoc
+class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
+  _$CrewCopyWithImpl(this._value, this._then);
+
+  final Crew _value;
+  // ignore: unused_field
+  final $Res Function(Crew) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? profile = freezed,
+    Object? department = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ImgData,
+      department: department == freezed
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  $ImgDataCopyWith<$Res> get profile {
+    return $ImgDataCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$CrewCopyWith<$Res> implements $CrewCopyWith<$Res> {
+  factory _$CrewCopyWith(_Crew value, $Res Function(_Crew) then) =
+      __$CrewCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, String name, ImgData profile, String department});
+
+  @override
+  $ImgDataCopyWith<$Res> get profile;
+}
+
+/// @nodoc
+class __$CrewCopyWithImpl<$Res> extends _$CrewCopyWithImpl<$Res>
+    implements _$CrewCopyWith<$Res> {
+  __$CrewCopyWithImpl(_Crew _value, $Res Function(_Crew) _then)
+      : super(_value, (v) => _then(v as _Crew));
+
+  @override
+  _Crew get _value => super._value as _Crew;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? profile = freezed,
+    Object? department = freezed,
+  }) {
+    return _then(_Crew(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ImgData,
+      department: department == freezed
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Crew implements _Crew {
+  const _$_Crew(
+      {required this.id,
+      required this.name,
+      required this.profile,
+      required this.department});
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final ImgData profile;
+  @override
+  final String department;
+
+  @override
+  String toString() {
+    return 'Crew(id: $id, name: $name, profile: $profile, department: $department)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Crew &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality()
+                    .equals(other.profile, profile)) &&
+            (identical(other.department, department) ||
+                const DeepCollectionEquality()
+                    .equals(other.department, department)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(department);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CrewCopyWith<_Crew> get copyWith =>
+      __$CrewCopyWithImpl<_Crew>(this, _$identity);
+}
+
+abstract class _Crew implements Crew {
+  const factory _Crew(
+      {required int id,
+      required String name,
+      required ImgData profile,
+      required String department}) = _$_Crew;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  ImgData get profile => throw _privateConstructorUsedError;
+  @override
+  String get department => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$CrewCopyWith<_Crew> get copyWith => throw _privateConstructorUsedError;
 }

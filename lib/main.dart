@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
 import 'package:dicoding_movie_app/di/vm_di.dart';
 import 'package:dicoding_movie_app/res/theme.dart';
+import 'package:dicoding_movie_app/ui/page/detail/detail_page.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
 import 'package:dicoding_movie_app/ui/widget/_template_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/carousel_trending.dart';
@@ -96,7 +97,15 @@ class MyApp extends StatelessWidget {
       ),
 
  */
-//      /*
+    home: Scaffold(
+      body: ViewModelProvider(
+        creators: [
+              (ctx) => VmDi.detailVm,
+        ],
+        child: DetailPage(movie: dummyMovieList[1]),
+      ),
+    ),
+/*
       home: Scaffold(
         body: ViewModelProvider(
           creators: [

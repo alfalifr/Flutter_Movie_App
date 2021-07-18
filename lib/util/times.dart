@@ -1,4 +1,5 @@
 import 'package:dicoding_movie_app/util/type_util.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -19,3 +20,5 @@ String syncFormatTime(DateTime date, { String localeName = "id_ID" }) {
     return DateFormat.yMMMMd().format(date);
   }
 }
+
+String formatTimeOfDay(TimeOfDay time) => "${time.hour}:${time.minute}";
