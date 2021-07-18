@@ -8,6 +8,7 @@ import 'package:dicoding_movie_app/ui/widget/text_widget.dart';
 import 'package:dicoding_movie_app/util/assets.dart';
 import 'package:dicoding_movie_app/util/data_mapper.dart';
 import 'package:dicoding_movie_app/util/times.dart';
+import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/material.dart';
 import 'package:viewmodel/ui/base/async_view_model_observer.dart';
 import 'package:viewmodel/ui/base/view_model.dart';

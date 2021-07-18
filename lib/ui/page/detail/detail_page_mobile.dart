@@ -73,7 +73,11 @@ class _MobilePage extends StatelessWidget {
           children: [
             Icon(
               Icons.star,
-              color: yellow,
+              color: getColorPointFromLinearGradient(
+                first: red,
+                last: green_light,
+                point: data.movie.voteAverage / 100,
+              ),
             ),
             SizedBox(width: 5,),
             ThemedText.size0Bold(Text(
