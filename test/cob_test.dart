@@ -1,8 +1,9 @@
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:viewmodel/util/_consoles.dart';
 
-main() {
+main() async {
   prin(0xFFB30000);
   prin(0xFF);
 
@@ -24,3 +25,4 @@ afa() {
 
   prin("a= $a, r= $r, g= $g, b= $b,");
 }
+

@@ -1,14 +1,22 @@
+import 'dart:ui';
+
 import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
 import 'package:dicoding_movie_app/di/vm_di.dart';
 import 'package:dicoding_movie_app/res/theme.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
+import 'package:dicoding_movie_app/ui/widget/_template_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/carousel_trending.dart';
+import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/movie_list_widget.dart';
 import 'package:dicoding_movie_app/util/const.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:viewmodel/ui/base/live_data.dart';
+import 'package:viewmodel/ui/base/live_data_observer.dart';
 import 'package:viewmodel/ui/base/view_model.dart';
+import 'package:viewmodel/util/_consoles.dart';
 
 
 void main() async {
@@ -17,12 +25,78 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final scrollControl = ScrollController();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: appTheme,
+/*
+      home: Scaffold(
+        body: Builder(
+          builder: (ctx) {
+            final maxHeight = 100.0;
+/*
+            final panelHeight = MutableLiveData<double>(maxHeight);
+            final scrollControl = ScrollController();
+            scrollControl.addListener(() {
+              if(panelHeight.isActive) {
+                final newOff = maxHeight - scrollControl.offset;
+                prind("newOff = $newOff");
+                if(newOff >= 0) {
+                  panelHeight.value = newOff;
+                }
+                ///*
+                else if(panelHeight.value != 0) {
+                  panelHeight.value = 0;
+                }
+                // */
+              }
+            });
+ */
+            return Column(
+              children: [
+
+                CollapsingBlur(
+                  maxHeight: 200,
+                  scrollController: scrollControl,
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    color: Colors.blue,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Stack(
+                        children: [
+                          Text(
+                            "Halo",
+                            textAlign: TextAlign.center,
+                            textScaleFactor: 2,
+                          ),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    controller: scrollControl,
+                    itemCount: 20,
+                    itemBuilder: (ctx, i) => ListTile(
+                      title: Text("$i. ${faker.lorem.sentence()}"),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+
+ */
+//      /*
       home: Scaffold(
         body: ViewModelProvider(
           creators: [
@@ -31,6 +105,7 @@ class MyApp extends StatelessWidget {
           child: ListPage(),
         ),
       ),
+//       */
       /*
       home: Scaffold(
         body: Column(
@@ -64,6 +139,49 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/*
+
+                Builder(
+                  builder: (ctx) {
+                    return LiveDataObserver<double>(
+                      liveData: panelHeight,
+                      builder: (ctx, h) {
+                        prind("LiveDataObserver<double>() h= $h maxHeight - h = ${maxHeight - (h ?? 0)}");
+                        final blur = maxHeight - (h ?? 0);
+                        return h != null ? Container(
+                          height: h,
+                          color: Colors.blue,
+                          child: ClipRRect(
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "Halo",
+                                    textScaleFactor: 2,
+                                  ),
+                                ),
+                                Container(
+                                  child: blur > 0 ? BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                      sigmaX: blur,
+                                      sigmaY: blur,
+                                    ),
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0),
+                                    ),
+                                  ) : defaultEmptyWidget(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ) : defaultLoading();
+                      },
+                    );
+                  },
+                ),
+ */
 
 /*
 class MyHomePage extends StatefulWidget {
