@@ -96,7 +96,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
- */
+// */
+/*
     home: Scaffold(
       body: ViewModelProvider(
         creators: [
@@ -105,7 +106,8 @@ class MyApp extends StatelessWidget {
         child: DetailPage(movie: dummyMovieList[1]),
       ),
     ),
-/*
+// */
+///*
       home: Scaffold(
         body: ViewModelProvider(
           creators: [
@@ -114,7 +116,7 @@ class MyApp extends StatelessWidget {
           child: ListPage(),
         ),
       ),
-//       */
+// */
       /*
       home: Scaffold(
         body: Column(

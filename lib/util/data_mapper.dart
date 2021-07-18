@@ -35,7 +35,31 @@ List<Crew> getArtists(List<Crew> crews) => crews.where(
 ).toList(growable: false);
 
 
-String getDirectorStr(List<Crew> crews) => getProducers(crews).map((e) => e.name).join(", ");
-String getProducerStr(List<Crew> crews) => getProducers(crews).map((e) => e.name).join(", ");
-String getWriterStr(List<Crew> crews) => getWriters(crews).map((e) => e.name).join(", ");
-String getArtistStr(List<Crew> crews) => getArtists(crews).map((e) => e.name).join(", ");
+String getDirectorStr(List<Crew> crews) {
+  var list = getDirectors(crews).map((e) => e.name).toList(growable: false);
+  if(list.length > 3) {
+    list = list.sublist(0, 3);
+  }
+  return list.join(", ");
+}
+String getProducerStr(List<Crew> crews) {
+  var list = getProducers(crews).map((e) => e.name).toList(growable: false);
+  if(list.length > 3) {
+    list = list.sublist(0, 3);
+  }
+  return list.join(", ");
+}
+String getWriterStr(List<Crew> crews) {
+  var list = getWriters(crews).map((e) => e.name).toList(growable: false);
+  if(list.length > 3) {
+    list = list.sublist(0, 3);
+  }
+  return list.join(", ");
+}
+String getArtistStr(List<Crew> crews) {
+  var list = getArtists(crews).map((e) => e.name).toList(growable: false);
+  if(list.length > 3) {
+    list = list.sublist(0, 3);
+  }
+  return list.join(", ");
+}

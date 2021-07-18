@@ -183,12 +183,14 @@ class _ListPageState
 
   void _toDetailPage(Movie movie) {
     Navigator.push(context, MaterialPageRoute(
-      builder: (ctx) => ViewModelProvider(
-        creators: [
-          (ctx) => VmDi.detailVm,
-        ],
-        child: DetailPage(movie: movie),
-      ),
+      builder: (ctx) => Scaffold(
+        body: ViewModelProvider(
+          creators: [
+            (ctx) => VmDi.detailVm,
+          ],
+          child: DetailPage(movie: movie),
+        ),
+      )
     ));
   }
 

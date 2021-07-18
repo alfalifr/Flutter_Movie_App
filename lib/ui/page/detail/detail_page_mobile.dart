@@ -160,35 +160,37 @@ class _MobilePage extends StatelessWidget {
         );
 
         return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 320,
-                child: mainHeader,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 15,),
-                    release,
-                    directors,
-                    producers,
-                    homepage,
-                    SizedBox(height: 15,),
-                    ThemedText.size0Bold(Text(
-                      "Overview",
-                    )),
-                    SizedBox(height: 10,),
-                    ThemedText.sizeM1(Text(
-                      data.overview,
-                    )),
-                  ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 320,
+                  child: mainHeader,
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20,),
+                      release,
+                      directors,
+                      producers,
+                      homepage,
+                      SizedBox(height: 15,),
+                      ThemedText.size0Bold(Text(
+                        "Overview",
+                      )),
+                      SizedBox(height: 10,),
+                      ThemedText.sizeM1(Text(
+                        data.overview,
+                      )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -207,8 +209,8 @@ class _MobileDetailText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Wrap(
+      direction: Axis.horizontal,
       children: [
         ThemedText.sizeM1Bold(Text(
           "$title:",
