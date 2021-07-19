@@ -59,7 +59,7 @@ class __DesktopDetailPageState
           ),
           Expanded(
             child: Container(
-              color: black_trans_4,
+              color: black_trans_3,
             ),
           ),
         ],
@@ -70,6 +70,7 @@ class __DesktopDetailPageState
       liveData: vm.currentMovie,
       builder: (ctx, data) => data != null ? ThemedText.size2Bold(Text(
         data.name,
+        style: TextStyle(color: Colors.white,),
       )) : defaultLoading(),
     );
 
@@ -77,6 +78,7 @@ class __DesktopDetailPageState
       liveData: vm.currentMovie,
       builder: (ctx, data) => data != null ? ThemedText.size0Bold(Text(
         syncFormatTime(data.date),
+        style: TextStyle(color: Colors.white,),
       )) : defaultLoading(),
     );
 
@@ -94,6 +96,7 @@ class __DesktopDetailPageState
           SizedBox(width: 10,),
           ThemedText.size1Bold(Text(
             "User\nScore",
+            style: TextStyle(color: Colors.white,),
           )),
         ],
       ) : defaultLoading(),
@@ -108,7 +111,7 @@ class __DesktopDetailPageState
     final duration = _vmObserver(
       vm: vm,
       builder: (ctx, data) => data?.duration != null
-          ? _DetailDuration(data!) : defaultEmptyWidget(),
+          ? _DetailDuration(data!, textColor: Colors.white,) : defaultEmptyWidget(),
     );
 
     final tagline = _vmObserver(
@@ -119,7 +122,7 @@ class __DesktopDetailPageState
         child: ThemedText.size1BoldItalic(Text(
           data.tagline!,
           style: TextStyle(
-            color: black_trans_2,
+            color: white_trans_2,
           ),
         )),
       ) : defaultEmptyWidget() : defaultLoading(),
@@ -142,11 +145,15 @@ class __DesktopDetailPageState
             children: [
               ThemedText.size1Bold(Text(
                 "Overview",
+                style: TextStyle(color: Colors.white,),
               )),
               SizedBox(height: 10,),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Text(data.overview),
+                  child: Text(
+                    data.overview,
+                    style: TextStyle(color: Colors.white,),
+                  ),
                 ),
               ),
             ],

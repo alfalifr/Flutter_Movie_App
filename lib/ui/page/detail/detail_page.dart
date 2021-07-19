@@ -148,7 +148,10 @@ class _DetailMainPoster extends StatelessWidget {
 
 class _DetailDuration extends StatelessWidget {
   final MovieDetail data;
-  _DetailDuration(this.data);
+  final Color? textColor;
+  _DetailDuration(this.data, {
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +166,7 @@ class _DetailDuration extends StatelessWidget {
         SizedBox(width: 5,),
         ThemedText.size0Bold(Text(
           getDurationString(data.duration!),
+          style: TextStyle(color: textColor,),
         )),
       ],
     );
