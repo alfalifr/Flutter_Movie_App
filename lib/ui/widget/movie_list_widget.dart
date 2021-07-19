@@ -94,35 +94,10 @@ class ItemPopular extends StatelessWidget {
           Positioned(
             top: imgHeight-50,
             left: 15,
-            child: ClipOval(
-              child: Container(
-                width: 65,
-                height: 65,
-                color: primarySwatch.shade900,
-                padding: EdgeInsets.all(5),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      child: CircularProgressIndicator(
-                        value: score.toDouble() / 100,
-                        strokeWidth: 5,
-                        color: getColorPointFromLinearGradient(
-                          first: red,
-                          last: green_light,
-                          point: score.toDouble() / 100,
-                        ),
-                      ),
-                    ),
-                    ThemedText.size0Bold(Text(
-                      "${score.toStringAsFixed(0)} %",
-                      style: TextStyle(color: Colors.white),
-                    )),
-                  ],
-                ),
-              ),
+            child: ItemMovieScore(
+              width: 65,
+              height: 65,
+              score: score,
             ),
           ),
         ],
@@ -130,6 +105,55 @@ class ItemPopular extends StatelessWidget {
     );
   }
 }
+
+///*
+class ItemMovieScore extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final num score;
+
+  ItemMovieScore({
+    required this.score,
+    this.height,
+    this.width,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(
+      child: Container(
+        width: width,
+        height: height,
+        color: primarySwatch.shade900,
+        padding: EdgeInsets.all(5),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: CircularProgressIndicator(
+                value: score.toDouble() / 100,
+                strokeWidth: 5,
+                color: getColorPointFromLinearGradient(
+                  first: red,
+                  last: green_light,
+                  point: score.toDouble() / 100,
+                ),
+              ),
+            ),
+            ThemedText.size0Bold(Text(
+              "${score.toStringAsFixed(0)} %",
+              style: TextStyle(color: Colors.white),
+            )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+// */
+
 
 /// This widget is designed to have the width of its parent.
 class ItemTrendingMobile extends StatelessWidget {

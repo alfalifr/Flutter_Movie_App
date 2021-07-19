@@ -430,14 +430,14 @@ packages:
       name: retrofit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   retrofit_generator:
     dependency: "direct dev"
     description:
       name: retrofit_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0+3"
+    version: "2.0.1"
   shelf:
     dependency: transitive
     description:
@@ -546,7 +546,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b196d41f6ce1c7d449143208e280fcb709120633
+      resolved-ref: b06f05e133977943d746072298dc6e51be4cc5ef
       url: "git://github.com/alfalifr/Flutter_ViewModel.git"
     source: git
     version: "0.0.1"

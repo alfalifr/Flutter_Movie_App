@@ -12,6 +12,7 @@ import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/movie_list_widget.dart';
 import 'package:dicoding_movie_app/util/const.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -100,6 +101,31 @@ class MyApp extends StatelessWidget {
 // */
 /*
     home: Scaffold(
+      body: Container(
+        width: 500,
+        height: 200,
+        child: Column(
+          children: [
+            LayoutBuilder(
+              builder: (ctx, constr) {
+                final str = Faker().lorem.sentence();
+                final span = TextSpan(
+                  text: str,
+                );
+                final painter = TextPainter(
+                  text: span,
+                );
+                painter.layout();
+                return Text("constr = $constr");
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+// */
+///*
+    home: Scaffold(
       body: ViewModelProvider(
         creators: [
               (ctx) => VmDi.detailVm,
@@ -113,7 +139,7 @@ class MyApp extends StatelessWidget {
       body: MobileCast(dummyCastList[0]),
     ),
  */
-///*
+/*
     home: Scaffold(
       body: SplashPage(),
     ),

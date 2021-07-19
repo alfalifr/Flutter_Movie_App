@@ -11,4 +11,14 @@ class Const {
   static const KEY_TRENDING = "trending";
   static const KEY_MOVIE = "movie";
   static const KEY_TV = "tv";
+
+  static const DIMEN_DEF_MOBILE_ASPECT_RATIO = 2/3;
+}
+
+enum ScreenSize {
+  /// When width < height.
+  mobile,
+
+  /// When width >= height.
+  desktop,
 }

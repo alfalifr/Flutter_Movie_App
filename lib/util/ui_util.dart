@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dicoding_movie_app/core/domain/model/color.dart';
+import 'package:dicoding_movie_app/util/const.dart';
 import 'package:flutter/material.dart';
 
 /// Get a single color in certain [point] in color gradient between [first] and [last] color.
@@ -53,4 +54,26 @@ double getMinProvidedLen({
       ? constr.maxHeight : getQuery().size.height;
 
   return min(width, height);
+}
+
+/// Decides whether the screen size of [context] is [ScreenSize.mobile]
+/// or [ScreenSize.desktop]. This method decides by comparing width and height
+/// of screen. If width of this screen is smaller than the screen height
+/// defined by [mobileAspectRatio], then the size is [ScreenSize.mobile].
+///
+/// Note that [mobileAspectRatio] should have value not greater than
+/// 1.0. If [mobileAspectRatio]'s value is greater than 1.0, then
+/// this method will assign the default aspect ratio.
+///
+ScreenSize getScreenCategory(BuildContext context, {
+  double mobileAspectRatio = Const.DIMEN_DEF_MOBILE_ASPECT_RATIO,
+}) {
+  if(mobileAspectRatio > 1) {
+    mobileAspectRatio = Const.DIMEN_DEF_MOBILE_ASPECT_RATIO;
+  }
+  final size = MediaQuery.of(context).size;
+  final maxMobileWidth = size.height * mobileAspectRatio;
+
+  if(size.width <= maxMobileWidth) return ScreenSize.mobile;
+  return ScreenSize.desktop;
 }

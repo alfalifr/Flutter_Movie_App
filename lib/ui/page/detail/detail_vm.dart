@@ -18,23 +18,23 @@ class DetailVm extends AsyncVm {
   final MutableLiveData<MovieDetail> _detail = MutableLiveData();
   LiveData<MovieDetail> get detail => _detail;
 
-  Movie? _currentMovie;
-  Movie? get currentMovie => _currentMovie;
+  final MutableLiveData<Movie> _currentMovie = MutableLiveData();
+  LiveData<Movie> get currentMovie => _currentMovie;
 
   @override
-  List<LiveData> get liveDatas => [_detail];
+  List<LiveData> get liveDatas => [_detail, _currentMovie];
 
 
   void getDetail({
     required Movie movie,
     bool forceLoad = false,
   }) {
-    if(!forceLoad && movie == _currentMovie) return;
+    if(!forceLoad && movie == _currentMovie.value) return;
     startJob(getDetailKey, (isActive) async {
       final res = await _getDetail(movie);
       if(res is Success<MovieDetail>) {
         final data = res.data;
-        _currentMovie = movie;
+        _currentMovie.value = movie;
         _detail.value = data;
       } else {
         return res as Fail;
