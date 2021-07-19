@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dicoding_movie_app/core/domain/model/color.dart';
 import 'package:flutter/material.dart';
 
@@ -34,4 +36,21 @@ Color getColorPointFromLinearGradient({
 
   return Color.fromARGB(aRes, rRes, gRes, bRes);
 //   */
+}
+
+
+double getMinProvidedLen({
+  required BuildContext context,
+  required BoxConstraints constr,
+}) {
+  MediaQueryData? query;
+  getQuery() => query ??= MediaQuery.of(context);
+
+  final width = constr.maxWidth != double.infinity
+      ? constr.maxWidth : getQuery().size.width;
+
+  final height = constr.maxHeight != double.infinity
+      ? constr.maxHeight : getQuery().size.height;
+
+  return min(width, height);
 }

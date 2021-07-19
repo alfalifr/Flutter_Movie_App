@@ -66,6 +66,16 @@ class _MobilePage extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ));
+        
+        final tagline = data.tagline?.isNotEmpty == true ? Container(
+          margin: EdgeInsets.only(bottom: 15),
+          child: ThemedText.size1BoldItalic(Text(
+            data.tagline!,
+            style: TextStyle(
+              color: black_trans_2,
+            ),
+          )),
+        ) : defaultEmptyWidget();
 
         final score = Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,11 +179,13 @@ class _MobilePage extends StatelessWidget {
                   child: mainHeader,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 15)
+                      .copyWith(bottom: 10,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 20,),
+                      tagline,
                       release,
                       directors,
                       producers,
@@ -186,6 +198,38 @@ class _MobilePage extends StatelessWidget {
                       ThemedText.sizeM1(Text(
                         data.overview,
                       )),
+                      SizedBox(height: 15,),
+                      ThemedText.size0Bold(Text(
+                        "Cast",
+                      )),
+                      SizedBox(height: 10,),
+                      Container(
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data.casts.length,
+                          itemBuilder: (ctx, i) => Container(
+                            margin: EdgeInsets.symmetric(horizontal: 5),
+                            child: _MobileCast(data.casts[i]),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      ThemedText.size0Bold(Text(
+                        "Photos",
+                      )),
+                      SizedBox(height: 10,),
+                      Container(
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data.posters.length,
+                          itemBuilder: (ctx, i) => Container(
+                            margin: EdgeInsets.symmetric(horizontal: 5),
+                            child: _DetailPhoto(data.posters[i]),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -220,6 +264,56 @@ class _MobileDetailText extends StatelessWidget {
           desc,
         )),
       ],
+    );
+  }
+}
+
+
+class _MobileCast extends StatelessWidget {
+  final Cast cast;
+  _MobileCast(this.cast);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (ctx, constraint) {
+        final ratio = 3.5/5;
+        final imgLen = constraint.maxHeight * ratio -30;
+        prind("_MobileCast imgLen= $imgLen constraint= $constraint");
+
+        return AspectRatio(
+          aspectRatio: ratio,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipOval(
+                  child: Container(
+                    height: imgLen,
+                    width: imgLen,
+                    child: SiImages.resolve(cast.profile),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ThemedText.sizeM1(Text(
+                  cast.name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )),
+                SizedBox(height: 5,),
+                ThemedText.sizeM1(Text(
+                  cast.character,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: grey_5,
+                  ),
+                )),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -10,6 +10,8 @@ const red = Color(0xFFEA0C4B);
 const grey_1 = Color(0xFFDCDCDC);
 const grey_2 = Color(0xFFBFBFBF);
 const grey_3 = Color(0xFFA0A0A0);
+const grey_4 = Color(0xFF868686);
+const grey_5 = Color(0xFF656565);
 
 const black_trans_1 = Color(0xCE000000);
 const black_trans_2 = Color(0xA1000000);

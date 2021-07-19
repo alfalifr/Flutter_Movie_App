@@ -5,6 +5,7 @@ import 'package:dicoding_movie_app/di/vm_di.dart';
 import 'package:dicoding_movie_app/res/theme.dart';
 import 'package:dicoding_movie_app/ui/page/detail/detail_page.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
+import 'package:dicoding_movie_app/ui/page/splash/splash_page.dart';
 import 'package:dicoding_movie_app/ui/widget/_template_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/carousel_trending.dart';
 import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
@@ -107,7 +108,17 @@ class MyApp extends StatelessWidget {
       ),
     ),
 // */
+/*
+    home: Scaffold(
+      body: MobileCast(dummyCastList[0]),
+    ),
+ */
 ///*
+    home: Scaffold(
+      body: SplashPage(),
+    ),
+// */
+/*
       home: Scaffold(
         body: ViewModelProvider(
           creators: [

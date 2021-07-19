@@ -1,3 +1,4 @@
+import 'package:dicoding_movie_app/core/domain/model/img.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie_detail.dart';
 import 'package:dicoding_movie_app/res/colors.dart';
@@ -9,9 +10,11 @@ import 'package:dicoding_movie_app/util/assets.dart';
 import 'package:dicoding_movie_app/util/data_mapper.dart';
 import 'package:dicoding_movie_app/util/times.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:viewmodel/ui/base/async_view_model_observer.dart';
 import 'package:viewmodel/ui/base/view_model.dart';
+import 'package:viewmodel/util/_consoles.dart';
 
 part 'detail_page_mobile.dart';
 
@@ -26,7 +29,35 @@ class DetailPage extends StatelessWidget {
     final vm = ViewModelProvider.of<DetailVm>(context)
       ..getDetail(movie: movie);
 
-    return _MobilePage(vm: vm);
+    final page = _MobilePage(vm: vm);
+    return Stack(
+      children: [
+        page,
+        SafeArea(
+          child: Container(
+            margin: EdgeInsets.all(10),
+            child: Material(
+              color: Colors.transparent,
+              child: InkResponse(
+                onTap: () => Navigator.pop(context),
+                highlightShape: BoxShape.circle,
+                child: Ink(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: black_trans_5,
+                  ),
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -59,5 +90,25 @@ class _Genres extends StatelessWidget {
         )).toList(growable: false),
       ),
     ) : defaultEmptyWidget();
+  }
+}
+
+
+class _DetailPhoto extends StatelessWidget {
+  final ImgData img;
+  _DetailPhoto(this.img);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      elevation: 5,
+      child: AspectRatio(
+        aspectRatio: stdLandscapeMoviePosterRatio,
+        child: SiImages.resolve(img),
+      ),
+    );
   }
 }
