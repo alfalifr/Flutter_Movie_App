@@ -88,10 +88,12 @@ class __DesktopDetailPageState
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ItemMovieScore(
+          Container(
             width: 70,
             height: 70,
-            score: data.voteAverage,
+            child: ItemMovieScore(
+              score: data.voteAverage,
+            ),
           ),
           SizedBox(width: 10,),
           ThemedText.size1Bold(Text(
@@ -344,6 +346,7 @@ class _DesktopCast extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: SingleChildScrollView(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ThemedText.size0Bold(Text(
                             cast.name,

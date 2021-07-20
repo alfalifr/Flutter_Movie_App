@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dicoding_movie_app/core/domain/model/color.dart';
 import 'package:dicoding_movie_app/util/const.dart';
 import 'package:flutter/material.dart';
+import 'package:viewmodel/util/_consoles.dart';
 
 /// Get a single color in certain [point] in color gradient between [first] and [last] color.
 ///
@@ -54,6 +55,31 @@ double getMinProvidedLen({
       ? constr.maxHeight : getQuery().size.height;
 
   return min(width, height);
+}
+
+Size getActualAspectRatioSize({
+  required BuildContext context,
+  required BoxConstraints constr,
+  required double aspectRatio,
+}) {
+  MediaQueryData? query;
+  getQuery() => query ??= MediaQuery.of(context);
+
+  var width = constr.maxWidth != double.infinity
+      ? constr.maxWidth : getQuery().size.width;
+
+  var height = constr.maxHeight != double.infinity
+      ? constr.maxHeight : getQuery().size.height;
+
+  prind("getActualAspectRatioSize AWAL width= $width height= $height constr= $constr aspectRatio= $aspectRatio");
+
+  if(width <= height) {
+    height = width / aspectRatio;
+  } else {
+    width = height * aspectRatio;
+  }
+
+  return Size(width, height);
 }
 
 /// Decides whether the screen size of [context] is [ScreenSize.mobile]

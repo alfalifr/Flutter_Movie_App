@@ -10,6 +10,7 @@ import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/movie_list_type_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/movie_list_widget.dart';
 import 'package:dicoding_movie_app/util/const.dart';
+import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,11 @@ class _ListPageState
     implements Expirable {
   final pageController = PageController();
   final scrollController = ScrollController();
+  final carouselIndexController = MutableLiveData(0);
   final scrollOffsetContainer = Var(0.0);
   bool isChangingPage = false;
   final currentPage = MutableLiveData(0);
+  final MutableLiveData<double> maxHeightController = MutableLiveData();
   final popularTypes = [Const.KEY_MOVIE, Const.KEY_TV,];
   ListVm? vm;
 
@@ -112,22 +115,42 @@ class _ListPageState
       //if(isChangingPage.value) {}
     });
 // */
+    final movieTypeHeight = 70.0;
 
+    final screenSize = MediaQuery.of(context).size;
+    final sizeCategory = getScreenCategory(context, mobileAspectRatio: 1);
+
+    final carouselMaxHeight = sizeCategory == ScreenSize.mobile
+        ? screenSize.width / stdLandscapeMoviePosterRatio
+        : screenSize.height - movieTypeHeight;
+
+    maxHeightController.value = carouselMaxHeight;
+    prind("movieTypeHeight= $movieTypeHeight screenSize= $screenSize sizeCategory= $sizeCategory carouselMaxHeight= $carouselMaxHeight");
 
     return Column(
       children: [
         CollapsingBlur(
-          maxHeight: MediaQuery.of(context).size.width / stdLandscapeMoviePosterRatio,
+          onTap: () {
+            final dataList = vm!.trendingList.value;
+            if(dataList?.isNotEmpty == true){
+              final movie = dataList![carouselIndexController.value!];
+              _toDetailPage(movie);
+            }
+          },
+          maxHeightController: maxHeightController,
           scrollController: scrollController,
           child: LiveDataObserver<List<Movie>>(
             liveData: vm!.trendingList,
             builder: (ctx, data) => data != null
-                ? CarouselTrending(dataList: data)
-                : defaultLoading(),
+                ? CarouselTrending(
+                  dataList: data,
+                  controllerLiveData: carouselIndexController,
+                  //onItemClick: _toDetailPage,
+                ) : defaultLoading(),
           ),
         ),
         Container(
-          height: 70,
+          height: movieTypeHeight,
           child: _TabBarMovieType(
             padding: EdgeInsets.symmetric(vertical: 10,),
             currentPage: currentPage,
@@ -199,7 +222,9 @@ class _ListPageState
     _isActive = false;
     pageController.dispose();
     scrollController.dispose();
+    carouselIndexController.dispose();
     currentPage.dispose();
+    maxHeightController.dispose();
     super.dispose();
   }
 
@@ -236,26 +261,31 @@ class SingleListPage extends StatelessWidget {
             controller?.jumpTo(currentOffset!.value);
           }
         });
-        return data != null && vm.currentType == type ? GridView.builder(
-          controller: controller,
-          //physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (ctx, i) => InkWell(
-            onTap: onItemClick != null
-                ? () => onItemClick!.call(data[i])
-                : null,
-            child: Material(
-              color: Colors.transparent,
-              child: ItemPopular.fromData(data[i]),
-            ),
-          ),
-          itemCount: data.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            mainAxisExtent: 420,
-            //childAspectRatio: 1/10
-          ),
+        return data != null && vm.currentType == type ? LayoutBuilder(
+          builder: (ctx, constr) {
+            final gridCrossAxisCount = constr.maxWidth ~/ 206 +1;
+            return GridView.builder(
+              controller: controller,
+              //physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, i) => InkWell(
+                onTap: onItemClick != null
+                    ? () => onItemClick!.call(data[i])
+                    : null,
+                child: Material(
+                  color: Colors.transparent,
+                  child: ItemPopular.fromData(data[i]),
+                ),
+              ),
+              itemCount: data.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: gridCrossAxisCount,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 420,
+                //childAspectRatio: 1/10,
+              ),
+            );
+          },
         ) : defaultLoading();
       },
     );
@@ -278,6 +308,7 @@ class _TabBarMovieType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    prind("_TabBarMovieType build");
     return Listener(
       onPointerSignal: (signal) async {
         //prind("signal = $signal");

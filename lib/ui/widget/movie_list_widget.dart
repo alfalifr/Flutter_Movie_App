@@ -11,6 +11,7 @@ import 'package:dicoding_movie_app/util/times.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viewmodel/util/_consoles.dart';
 
 
 class ItemPopular extends StatelessWidget {
@@ -47,60 +48,74 @@ class ItemPopular extends StatelessWidget {
     final imgWidth = preferredWidth ?? 190.0;
     final imgHeight = imgWidth / ratio;
 
+    prind("ItemPopular imgWidth= $imgWidth preferredWidth= $preferredWidth");
+
     final image = SiImages.resolve(img, width: 100);
     final imgChild = Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
       elevation: 5,
-      child: Container(
-        width: imgWidth,
-        child: AspectRatio(
-          aspectRatio: ratio,
-          child: image,
-        ),
+      child: AspectRatio(
+        aspectRatio: ratio,
+        child: image,
       ),
     );
 
     return Container(
       //height: imgHeight + 50,
       width: imgWidth,
-      child: Stack(
-        children: [
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                imgChild,
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(10).copyWith(top: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ThemedText.size1Bold(Text(
-                        title,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      )),
-                      SizedBox(height: 10,),
-                      Text(syncFormatTime(date)),
-                    ],
+      child: LayoutBuilder(
+        builder: (ctx, constr) {
+          final actualSize = getActualAspectRatioSize(
+            context: ctx,
+            constr: constr,
+            aspectRatio: ratio,
+          );
+          final scoreItemLen = actualSize.width /3;
+
+          prind("ItemPopular actualSize= $actualSize imgWidth= $imgWidth scoreItemLen= $scoreItemLen");
+
+          return Stack(
+            children: [
+              Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    imgChild,
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(10).copyWith(top: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ThemedText.size1Bold(Text(
+                            title,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          )),
+                          SizedBox(height: 10,),
+                          Text(syncFormatTime(date)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: actualSize.height - scoreItemLen/2 -10,
+                left: 15,
+                child: Container(
+                  width: scoreItemLen,
+                  height: scoreItemLen,
+                  child: ItemMovieScore(
+                    score: score,
                   ),
                 ),
-              ],
-            ),
-          ),
-          Positioned(
-            top: imgHeight-50,
-            left: 15,
-            child: ItemMovieScore(
-              width: 65,
-              height: 65,
-              score: score,
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -108,47 +123,53 @@ class ItemPopular extends StatelessWidget {
 
 ///*
 class ItemMovieScore extends StatelessWidget {
-  final double? width;
-  final double? height;
+  //final double? width;
+  //final double? height;
   final num score;
 
   ItemMovieScore({
     required this.score,
-    this.height,
-    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Container(
-        width: width,
-        height: height,
-        color: primarySwatch.shade900,
-        padding: EdgeInsets.all(5),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: double.infinity,
-              height: double.infinity,
-              child: CircularProgressIndicator(
-                value: score.toDouble() / 100,
-                strokeWidth: 5,
-                color: getColorPointFromLinearGradient(
-                  first: red,
-                  last: green_light,
-                  point: score.toDouble() / 100,
+    return LayoutBuilder(
+      builder: (ctx, constr) {
+        final scoreStr = "${score.toStringAsFixed(0)} %";
+        final scoreText = constr.maxWidth >= 50 ? ThemedText.size0Bold(Text(
+          scoreStr, style: TextStyle(color: Colors.white),
+        )) : ThemedText.sizeM1Bold(Text(
+          scoreStr, style: TextStyle(color: Colors.white),
+        ));
+
+        prind("ItemMovieScore constr= $constr");
+
+        return ClipOval(
+          child: Container(
+            color: primarySwatch.shade900,
+            padding: EdgeInsets.all(5),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: CircularProgressIndicator(
+                    value: score.toDouble() / 100,
+                    strokeWidth: 5,
+                    color: getColorPointFromLinearGradient(
+                      first: red,
+                      last: green_light,
+                      point: score.toDouble() / 100,
+                    ),
+                  ),
                 ),
-              ),
+                scoreText,
+              ],
             ),
-            ThemedText.size0Bold(Text(
-              "${score.toStringAsFixed(0)} %",
-              style: TextStyle(color: Colors.white),
-            )),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -157,32 +178,50 @@ class ItemMovieScore extends StatelessWidget {
 
 /// This widget is designed to have the width of its parent.
 class ItemTrendingMobile extends StatelessWidget {
-  final ImgData img;
-  final String caption;
+  //final ImgData img;
+  //final String caption;
+  final double? captionBottomMargin;
+  final void Function(Movie)? onClick;
+  final Movie data;
   //final double? preferredHeight;
-
+/*
   ItemTrendingMobile({
     required this.img,
     required this.caption,
+    this.captionBottomMargin,
+    this.onClick,
     //this.preferredHeight,
   });
+ */
 
-  ItemTrendingMobile.fromData(Movie data,
-  //    {this.preferredHeight,}
-  ): img = data.poster, caption = data.name;
+  ItemTrendingMobile.fromData({
+    required this.data,
+    this.captionBottomMargin,
+    this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {
     final ratio = stdLandscapeMoviePosterRatio;
     final width = MediaQuery.of(context).size.width;
     final height = width / ratio;
+    prind("ItemTrendingMobile ratio= $ratio width= $width height= $height");
     //final height = preferredHeight ??
     final imgChild = Stack(
       children: [
-        Container(
-          height: height,
-          width: width,
-          child: SiImages.resolve(img),
+        Material(
+          color: Colors.transparent,
+          child: GestureDetector(
+            onTap: onClick != null ? () {
+              prind("MovieItem onTap() data= $data");
+              onClick!.call(data);
+            } : null,
+            child: Container(
+              height: double.infinity,
+              width: width,
+              child: SiImages.resolve(data.poster),
+            ),
+          ),
         ),
         Container(
           decoration: BoxDecoration(
@@ -200,14 +239,14 @@ class ItemTrendingMobile extends StatelessWidget {
         Align(
           alignment: Alignment.bottomLeft,
           child: Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(10).copyWith(bottom: 10 +(captionBottomMargin ?? 0)),
             child: ThemedText.size1Bold(Text(
-              caption,
+              data.name,
               style: TextStyle(color: Colors.white),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             )),
-          )
+          ),
         ),
       ],
     );

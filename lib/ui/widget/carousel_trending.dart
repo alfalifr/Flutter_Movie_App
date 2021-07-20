@@ -11,14 +11,26 @@ import 'package:viewmodel/util/_consoles.dart';
 
 class CarouselTrending extends StatefulWidget {
   final List<Movie> dataList;
+  final void Function(Movie)? onItemClick;
+  final MutableLiveData<int> controllerLiveData;
+  final bool isLiveDataOwner;
 
   CarouselTrending({
-    required this.dataList
-  });
+    required this.dataList,
+    this.onItemClick,
+    MutableLiveData<int>? controllerLiveData,
+    bool? isLiveDataOwner,
+  }):
+    this.controllerLiveData = controllerLiveData ?? MutableLiveData(0),
+    this.isLiveDataOwner = isLiveDataOwner ?? controllerLiveData == null
+  ;
 
   @override
   _CarouselTrendingState createState() => _CarouselTrendingState(
     dataList: dataList,
+    onItemClick: onItemClick,
+    controllerLiveData: controllerLiveData,
+    isLiveDataOwner: isLiveDataOwner,
   );
 }
 
@@ -28,13 +40,18 @@ class _CarouselTrendingState
 {
   final List<Movie> dataList;
   final controller = CarouselController();
-  final controllerLiveData = MutableLiveData(0);
+  final MutableLiveData<int> controllerLiveData;
+  final bool isLiveDataOwner;
+  final void Function(Movie)? onItemClick;
   bool _isPageChanging = false;
   int _currentPage = 0;
   bool _isIndicatorTapped = false;
 
   _CarouselTrendingState({
-    required this.dataList
+    required this.dataList,
+    required this.onItemClick,
+    required this.controllerLiveData,
+    required this.isLiveDataOwner,
   });
 
   @override
@@ -63,8 +80,9 @@ class _CarouselTrendingState
         CarouselSlider(
           carouselController: controller,
           options: CarouselOptions(
+            height: double.infinity,
             autoPlay: true,
-            //autoPlayInterval: Duration(milliseconds: 500),
+            //aspectRatio: 16/5,
             onPageChanged: (page, reason) {
               //prind("Carousel onPageChanged() page= $page, reason= $reason");
               if(!_isPageChanging) {
@@ -75,13 +93,18 @@ class _CarouselTrendingState
           items: dataList.map((e) =>
               Container(
                 //margin: EdgeInsets.symmetric(horizontal: 100),
-                child: ItemTrendingMobile.fromData(e),
-              )
+                child: ItemTrendingMobile.fromData(
+                  data: e,
+                  captionBottomMargin: 20,
+                  onClick: onItemClick,
+                ),
+              ),
           ).toList(growable: false),
         ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
+            //width: 500,
             margin: EdgeInsets.all(15),
             child: DotIndicator(
               count: dataList.length,
@@ -92,19 +115,15 @@ class _CarouselTrendingState
         ),
       ],
     );
-///*
-    return AspectRatio(
-      aspectRatio: stdLandscapeMoviePosterRatio,
-      child: core,
-    );
-// */
-    //return core;
+    return core;
   }
 
   @override
   void dispose() {
-    controllerLiveData.dispose();
     _isActive = false;
+    if(isLiveDataOwner) {
+      controllerLiveData.dispose();
+    }
     super.dispose();
   }
 

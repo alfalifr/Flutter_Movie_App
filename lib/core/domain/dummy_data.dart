@@ -64,7 +64,7 @@ final dummyMovieList = List<Movie>.generate(30, (i) => Movie(
   type: Const.KEY_TV,
 ));
 final dummyTrendingList = dummyMovieList.sublist(
-    faker.randomGenerator.integer(dummyMovieList.length, min: dummyMovieList.length -4),
+    faker.randomGenerator.integer(dummyMovieList.length),
 );
 
 

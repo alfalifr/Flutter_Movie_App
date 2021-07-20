@@ -124,7 +124,25 @@ class MyApp extends StatelessWidget {
       ),
     ),
 // */
-///*
+/*
+    home: Scaffold(
+      body: Builder(
+          builder: (ctx) {
+            final parentPadding = MediaQuery.of(ctx).padding;
+            prind("SafeArea padding = $parentPadding");
+            return SafeArea(
+              child: Builder(
+                builder: (ctx2) {
+                  final padding2 = MediaQuery.of(ctx2).padding;
+                  return Text("SafeArea padding = $parentPadding padding2= $padding2");
+                },
+              ),
+            );
+          },
+      ),
+    ),
+ */
+/*
     home: Scaffold(
       body: ViewModelProvider(
         creators: [
@@ -145,6 +163,30 @@ class MyApp extends StatelessWidget {
     ),
 // */
 /*
+    home: Scaffold(
+      body: Container(
+        width: 400,
+        child: LayoutBuilder(
+          builder: (ctx0, constr0) {
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
+              itemBuilder: (ctx, i) => Container(
+                width: 300,
+                child: LayoutBuilder(
+                  builder: (ctx, constr) {
+                    final query = MediaQuery.of(ctx).size;
+                    return Text("constr= $constr query= $query constr0= $constr0  ");
+                  },
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    ),
+// */
+///*
       home: Scaffold(
         body: ViewModelProvider(
           creators: [
