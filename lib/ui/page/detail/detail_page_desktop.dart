@@ -24,17 +24,19 @@ class __DesktopDetailPageState
   @override
   bool get isActive => _isActive;
 
-  ///*
   @override
   void initState() {
     isOverviewInHeader = MutableLiveData(true);
-    //..observe(this, (data) {prind("isOverviewInHeader.observe data= $data this= $this");});
     super.initState();
   }
-// */
 
   @override
   Widget build(BuildContext context) {
+    /*
+    =====================
+    Header Section
+    =====================
+     */
     final mainPoster = Container(
       constraints: BoxConstraints(
         maxHeight: 400,
@@ -136,16 +138,13 @@ class __DesktopDetailPageState
       ) : defaultEmptyWidget() : defaultEmptyWidget(),
     );
 
-    //var isOverviewInHeader = true;
     final headerOverview = LayoutBuilder(
       builder: (ctx, constr) {
         isOverviewInHeader.value = constr.maxHeight >= 100;
         prind("headerOverview constr= $constr constr.maxHeight < 100 => ${constr.maxHeight < 100} isOverviewInHeader= $isOverviewInHeader isOverviewInHeader.isChanging => ${isOverviewInHeader.isChanging}");
         if(constr.maxHeight < 100) {
-          //isOverviewInHeader.value = false;
           return defaultEmptyWidget();
         }
-        //isOverviewInHeader.value = true;
         return LiveDataObserver<MovieDetail>(
           liveData: vm.detail,
           builder: (ctx, data) => data?.overview.isNotEmpty == true ? Column(
@@ -172,7 +171,6 @@ class __DesktopDetailPageState
 
     final mainHeader = Stack(
       children: [
-        //Expanded(child: mainBg,),
         mainBg,
         Padding(
           padding: EdgeInsets.all(10).copyWith(left: 20,),
@@ -211,12 +209,6 @@ class __DesktopDetailPageState
             ],
           ),
         ),
-/*
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: tagline,
-        ),
- */
       ],
     );
 

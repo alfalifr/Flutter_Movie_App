@@ -10,6 +10,7 @@ import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/text_widget.dart';
 import 'package:dicoding_movie_app/util/assets.dart';
 import 'package:dicoding_movie_app/util/const.dart';
+import 'package:dicoding_movie_app/util/data_mapper.dart';
 import 'package:dicoding_movie_app/util/times.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -126,7 +127,7 @@ class ItemPopular extends StatelessWidget {
   }
 }
 
-///*
+
 class ItemMovieScore extends StatelessWidget {
   //final double? width;
   //final double? height;
@@ -140,7 +141,7 @@ class ItemMovieScore extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (ctx, constr) {
-        final scoreStr = "${score.toStringAsFixed(0)} %";
+        final scoreStr = getStdScoreStr(score, decimals: 0);
         final scoreText = constr.maxWidth >= 50 ? ThemedText.size0Bold(Text(
           scoreStr, style: TextStyle(color: Colors.white),
         )) : ThemedText.sizeM1Bold(Text(
@@ -178,26 +179,13 @@ class ItemMovieScore extends StatelessWidget {
     );
   }
 }
-// */
 
 
 /// This widget is designed to have the width of its parent.
 class ItemTrendingMobile extends StatelessWidget {
-  //final ImgData img;
-  //final String caption;
   final double? captionBottomMargin;
   final void Function(Movie)? onClick;
   final Movie data;
-  //final double? preferredHeight;
-/*
-  ItemTrendingMobile({
-    required this.img,
-    required this.caption,
-    this.captionBottomMargin,
-    this.onClick,
-    //this.preferredHeight,
-  });
- */
 
   ItemTrendingMobile.fromData({
     required this.data,
@@ -211,7 +199,7 @@ class ItemTrendingMobile extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = width / ratio;
     prind("ItemTrendingMobile ratio= $ratio width= $width height= $height");
-    //final height = preferredHeight ??
+
     final imgChild = Stack(
       children: [
         Material(

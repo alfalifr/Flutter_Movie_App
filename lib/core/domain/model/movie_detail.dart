@@ -12,21 +12,10 @@ part 'movie_detail.freezed.dart';
 @freezed
 class MovieDetail with _$MovieDetail {
   const factory MovieDetail({
-    /*
-    required int id,
-    required num voteAverage,
-    required int voteCount,
-    required String name,
-    required ImgData poster,
-    required String date,
-    //required num popularity,
-    required String type,
-     */
     required Movie movie,
     required String? tagline,
     required String overview,
     required String homepage,
-    //required ImgData backdrop,
     required num? duration, // Duration in minutes. Null if this is a TV show.
     required List<String> genres,
     required List<Company> productionCompanies,
@@ -78,7 +67,6 @@ class Company with _$Company {
     required ImgData? logo,
     required String name,
   }) = _Company;
-  //factory Company.fromJson(Map<String, dynamic> map) = _Company.fromJson;
   factory Company.fromResponse(MovieDetailCompanyResponse response) => Company(
     id: response.id,
     logo: response.logo_path != null ? ImgData(
@@ -97,7 +85,6 @@ class Cast with _$Cast {
     required ImgData? profile,
     required String character,
   }) = _Cast;
-  //factory Cast.fromJson(Map<String, dynamic> map) = _Cast.fromJson;
   factory Cast.fromResponse(MovieCastResponse response) => Cast(
     id: response.id,
     name: response.name,

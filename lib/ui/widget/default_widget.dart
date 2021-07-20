@@ -71,13 +71,6 @@ Widget defaultNoData({
   ),
 );
 
-/*
-Widget get defaultLoading => Container(
-  height: 80,
-  color: Manifest.theme.colorPrimary,
-);
- */
-
 Widget defaultSliverImg({
   double? width = 80,
   double? height = 80,

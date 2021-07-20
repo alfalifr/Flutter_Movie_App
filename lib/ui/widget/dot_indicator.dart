@@ -113,29 +113,5 @@ class _DotIndicatorState
         );
       },
     );
-/*
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List<Widget>.generate(count, (i) => LiveDataObserver<int>(
-        liveData: indexController,
-        builder: (ctx, i2) => i2 != null ? GestureDetector(
-          onTap: () {
-            onPreTap?.call();
-            indexController.value = i;
-          },
-          child: Container(
-            height: 10,
-            width: 25,
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: i2 == i ? appTheme.primaryColor : grey_1,
-              borderRadius: BorderRadius.circular(15),
-              //shape: BoxShape.circle,
-            ),
-          ),
-        ) : defaultLoading(),
-      )),
-    );
- */
   }
 }

@@ -1,12 +1,6 @@
 import 'package:dicoding_movie_app/core/domain/model/movie_detail.dart';
-import 'package:flutter/material.dart';
 import 'package:viewmodel/util/_consoles.dart';
-/*
-Color getScoreColor(num score) {
-  if(score <= 10) return Color(0xFFC60707);
-}
 
- */
 
 String getDurationString(num minutes) {
   prind("minutes = $minutes");
@@ -87,3 +81,5 @@ Map<String, dynamic> getTunedMovieResponseMap(Map<String, dynamic> rawMap) {
 
   return rawMap;
 }
+
+String getStdScoreStr(num score, { int decimals = 1, }) => "${(score * 10).toStringAsFixed(decimals)} %";

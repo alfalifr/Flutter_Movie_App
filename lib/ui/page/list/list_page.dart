@@ -105,33 +105,6 @@ class _ListPageState
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       vm!.getPopularList(type: vm!.currentType ?? popularTypes[0]);
     });
-/*
-    tabController.addListener(() {
-      if(vm.isActive) {
-        scrollOffsetContainer.value = scrollController.offset;
-        prind("scrollController.offset = ${scrollController.offset}");
-        if(!tabController.indexIsChanging) {
-          final page = tabController.index;
-          isChangingPage.value = true;
-          switch(page) {
-            case 0:
-            case 1:
-              vm.getPopularList(type: popularTypes[page]);
-              break;
-            default: throw "No such page '$page'";
-          }
-          isChangingPage.value = false;
-        }
-      }
-    });
- */
-
-/*
-    scrollController.addListener(() {
-      prind("scrollController.addListener scrollController.offset= ${scrollController.offset}");
-      //if(isChangingPage.value) {}
-    });
-// */
     final movieTypeHeight = 70.0;
 
     final queryData = MediaQuery.of(context);
@@ -193,33 +166,6 @@ class _ListPageState
             names: popularTypes.sublist(0)..[1] = "tv shows",
           ),
         ),
-        //SizedBox(height: 15,),
-/*
-        Flexible(
-          fit: FlexFit.tight,
-          child: Column(
-            children: [
-              TabBar(
-                controller: tabController,
-                tabs: popularTypes.map<Widget>((e) => Tab(
-                  text: e,
-                )).toList(growable: false),
-              ),
-              TabBarView(
-                controller: tabController,
-                children: [
-                  SingleListPage(type: popularTypes[0], vm: vm,
-                    controller: scrollController, currentOffset: scrollOffsetContainer,
-                  ),
-                  SingleListPage(type: popularTypes[1], vm: vm,
-                    controller: scrollController, currentOffset: scrollOffsetContainer,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
- */
         Flexible(
           child: PageView(
             controller: pageController,
@@ -358,26 +304,22 @@ class __TabBarMovieTypeSpacerState extends State<_TabBarMovieTypeSpacer> {
     prind("_TabBarMovieTypeSpacer build");
     return Listener(
       onPointerSignal: (signal) async {
-        //prind("signal = $signal");
         if(signal is PointerScrollEvent) {
           final scrollY = signal.scrollDelta.dy;
           final newHeight = scrollController.offset +scrollY;
 
           if(newHeight >= 0) {
             scrollController.jumpTo(newHeight);
-          } //else {scrollController.jumpTo(newHeight);}
+          }
         }
       },
       child: GestureDetector(
         onPanUpdate: (dragDetail) {
-          //prind("dragDetail= $dragDetail");
           final scrollY = dragDetail.delta.dy;
           final newHeight = scrollController.offset -scrollY;
-          //final pageScroll = scrollController.offset;
-          //prind("scrollY= $scrollY newHeight= $newHeight ");
           if(newHeight >= 0) {
             scrollController.jumpTo(newHeight);
-          } // else {scrollController.jumpTo(newHeight);}
+          }
         },
         child: LiveDataObserver<double>(
           liveData: heightController,
@@ -402,7 +344,6 @@ class _TabBarMovieType extends StatelessWidget {
   final List<String> names;
   final MutableLiveData<int> currentPage;
   final EdgeInsets? padding;
-  //final MutableLiveData<double> topMarginController = MutableLiveData(0);
 
   _TabBarMovieType({
     required this.scrollController,
@@ -416,14 +357,13 @@ class _TabBarMovieType extends StatelessWidget {
     prind("_TabBarMovieType build");
     return Listener(
       onPointerSignal: (signal) async {
-        //prind("signal = $signal");
         if(signal is PointerScrollEvent) {
           final scrollY = signal.scrollDelta.dy;
           final newHeight = scrollController.offset +scrollY;
 
           if(newHeight >= 0) {
             scrollController.jumpTo(newHeight);
-          }// else {scrollController.jumpTo(newHeight);}
+          }
         }
       },
       child: GestureDetector(
@@ -431,11 +371,10 @@ class _TabBarMovieType extends StatelessWidget {
           prind("dragDetail= $dragDetail");
           final scrollY = dragDetail.delta.dy;
           final newHeight = scrollController.offset -scrollY;
-          //final pageScroll = scrollController.offset;
           prind("scrollY= $scrollY newHeight= $newHeight ");
           if(newHeight >= 0) {
             scrollController.jumpTo(newHeight);
-          }// else {scrollController.jumpTo(newHeight);}
+          }
         },
         child: Container(
           padding: padding,
