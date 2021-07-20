@@ -39,8 +39,13 @@ class _ListPageState
   bool isChangingPage = false;
   final currentPage = MutableLiveData(0);
   final MutableLiveData<double> maxHeightController = MutableLiveData();
+  final MutableLiveData<double> typeTopMarginController = MutableLiveData();
   final popularTypes = [Const.KEY_MOVIE, Const.KEY_TV,];
   ListVm? vm;
+
+  bool _isActive = true;
+  @override
+  bool get isActive => _isActive;
 
   @override
   void initState() {
@@ -81,6 +86,18 @@ class _ListPageState
   }
 
   @override
+  void dispose() {
+    _isActive = false;
+    pageController.dispose();
+    scrollController.dispose();
+    carouselIndexController.dispose();
+    currentPage.dispose();
+    maxHeightController.dispose();
+    typeTopMarginController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     vm ??= ViewModelProvider.of<ListVm>(context)
       ..getTrendingList();
@@ -117,23 +134,26 @@ class _ListPageState
 // */
     final movieTypeHeight = 70.0;
 
-    final screenSize = MediaQuery.of(context).size;
+    final queryData = MediaQuery.of(context);
+    final screenSize = queryData.size;
     final sizeCategory = getScreenCategory(context, mobileAspectRatio: 1);
+    final systemPadding = queryData.padding;
 
     final carouselMaxHeight = sizeCategory == ScreenSize.mobile
         ? screenSize.width / stdLandscapeMoviePosterRatio
         : screenSize.height - movieTypeHeight;
 
     maxHeightController.value = carouselMaxHeight;
-    prind("movieTypeHeight= $movieTypeHeight screenSize= $screenSize sizeCategory= $sizeCategory carouselMaxHeight= $carouselMaxHeight");
+    prind("movieTypeHeight= $movieTypeHeight screenSize= $screenSize sizeCategory= $sizeCategory carouselMaxHeight= $carouselMaxHeight systemPadding= $systemPadding maxHeightController= $maxHeightController");
 
     return Column(
       children: [
         CollapsingBlur(
           onTap: () {
             final dataList = vm!.trendingList.value;
-            if(dataList?.isNotEmpty == true){
-              final movie = dataList![carouselIndexController.value!];
+            final activeIndex = carouselIndexController.value;
+            if(dataList?.isNotEmpty == true && activeIndex != null){
+              final movie = dataList![activeIndex];
               _toDetailPage(movie);
             }
           },
@@ -149,10 +169,25 @@ class _ListPageState
                 ) : defaultLoading(),
           ),
         ),
+        LiveDataObserver<double>(
+          liveData: typeTopMarginController,
+          builder: (ctx, margin) {
+            return SizedBox(
+              height: margin,
+            );
+          },
+        ),
+        _TabBarMovieTypeSpacer(
+          scrollController: scrollController,
+          maxHeight: systemPadding.top,
+        ),
         Container(
           height: movieTypeHeight,
           child: _TabBarMovieType(
-            padding: EdgeInsets.symmetric(vertical: 10,),
+            padding: EdgeInsets.only(
+              top: 10, //+systemPadding.top,
+              bottom: 10,
+            ),
             currentPage: currentPage,
             scrollController: scrollController,
             names: popularTypes.sublist(0)..[1] = "tv shows",
@@ -216,23 +251,7 @@ class _ListPageState
       )
     ));
   }
-
-  @override
-  void dispose() {
-    _isActive = false;
-    pageController.dispose();
-    scrollController.dispose();
-    carouselIndexController.dispose();
-    currentPage.dispose();
-    maxHeightController.dispose();
-    super.dispose();
-  }
-
-  bool _isActive = true;
-  @override
-  bool get isActive => _isActive;
 }
-
 
 
 class SingleListPage extends StatelessWidget {
@@ -292,18 +311,103 @@ class SingleListPage extends StatelessWidget {
   }
 }
 
+class _TabBarMovieTypeSpacer extends StatefulWidget {
+  final ScrollController scrollController;
+  final double maxHeight;
+
+  _TabBarMovieTypeSpacer({
+    required this.scrollController,
+    required this.maxHeight,
+  });
+  @override
+  __TabBarMovieTypeSpacerState createState() => __TabBarMovieTypeSpacerState(
+    scrollController: scrollController,
+    maxHeight: maxHeight,
+  );
+}
+
+class __TabBarMovieTypeSpacerState extends State<_TabBarMovieTypeSpacer> {
+  final ScrollController scrollController;
+  final double maxHeight;
+  final heightController = MutableLiveData<double>(0);
+
+  __TabBarMovieTypeSpacerState({
+    required this.scrollController,
+    required this.maxHeight,
+  });
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      if(scrollController.offset <= maxHeight) {
+        heightController.value = scrollController.offset;
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    heightController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    prind("_TabBarMovieTypeSpacer build");
+    return Listener(
+      onPointerSignal: (signal) async {
+        //prind("signal = $signal");
+        if(signal is PointerScrollEvent) {
+          final scrollY = signal.scrollDelta.dy;
+          final newHeight = scrollController.offset +scrollY;
+
+          if(newHeight >= 0) {
+            scrollController.jumpTo(newHeight);
+          } //else {scrollController.jumpTo(newHeight);}
+        }
+      },
+      child: GestureDetector(
+        onPanUpdate: (dragDetail) {
+          //prind("dragDetail= $dragDetail");
+          final scrollY = dragDetail.delta.dy;
+          final newHeight = scrollController.offset -scrollY;
+          //final pageScroll = scrollController.offset;
+          //prind("scrollY= $scrollY newHeight= $newHeight ");
+          if(newHeight >= 0) {
+            scrollController.jumpTo(newHeight);
+          } // else {scrollController.jumpTo(newHeight);}
+        },
+        child: LiveDataObserver<double>(
+          liveData: heightController,
+          builder: (ctx, data) {
+            return Container(
+              color: Colors.transparent,
+              height: data,
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+//class _TabBarMovieTypeSpacer extends StatelessWidget {}
+
 
 class _TabBarMovieType extends StatelessWidget {
   final ScrollController scrollController;
   final List<String> names;
   final MutableLiveData<int> currentPage;
   final EdgeInsets? padding;
+  //final MutableLiveData<double> topMarginController = MutableLiveData(0);
 
   _TabBarMovieType({
     required this.scrollController,
     required this.names,
     required this.currentPage,
-    this.padding,
+    required this.padding,
   });
 
   @override

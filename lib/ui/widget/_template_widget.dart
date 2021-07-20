@@ -68,6 +68,9 @@ class _CollapsingBlurState
     maxHeightController.observe(this, (maxHeight) {
       controller.value = maxHeight;
     });
+    if(maxHeightController.value != null) {
+      controller.value = maxHeightController.value;
+    }
     scrollController.addListener(() {
       if (controller.isActive) {
         final providedHeight = maxHeightController.value;
