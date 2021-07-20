@@ -103,7 +103,7 @@ class _ListPageState
       ..getTrendingList();
 
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      vm!.getPopularList(type: popularTypes[0]);
+      vm!.getPopularList(type: vm!.currentType ?? popularTypes[0]);
     });
 /*
     tabController.addListener(() {
@@ -280,6 +280,7 @@ class SingleListPage extends StatelessWidget {
             controller?.jumpTo(currentOffset!.value);
           }
         });
+        prind("SingleListPage.build() data= $data vm.currentType = ${vm.currentType} type= $type");
         return data != null && vm.currentType == type ? LayoutBuilder(
           builder: (ctx, constr) {
             final gridCrossAxisCount = constr.maxWidth ~/ 206 +1;
@@ -445,50 +446,6 @@ class _TabBarMovieType extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-
-class _SingleListPageSliver extends StatelessWidget {
-  final String type;
-  final ListVm vm;
-  final ScrollController? controller;
-  final Var<double>? currentOffset;
-
-  _SingleListPageSliver({
-    required this.type,
-    required this.vm,
-    this.controller,
-    this.currentOffset,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AsyncVmObserver<ListVm, List<Movie>>(
-      vm: vm,
-      liveDataGetter: (vm) => vm.popularList,
-      builder: (ctx, data) {
-        WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-          if(currentOffset != null) {
-            controller?.jumpTo(currentOffset!.value);
-          }
-        });
-        return data != null && vm.currentType == type ? SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-                (ctx, i) => ItemPopular.fromData(data[i]),
-            childCount: data.length,
-          ),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            mainAxisExtent: 420,
-          ),
-        ) : SliverToBoxAdapter(
-          child: defaultLoading(),
-        );
-      },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
 import 'package:dicoding_movie_app/core/domain/model/img.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie_detail.dart';
@@ -137,8 +138,8 @@ class _DetailMainPoster extends StatelessWidget {
         aspectRatio: stdPortraitMoviePosterRatio,
         child: _vmObserver(
           vm: vm,
-          builder: (ctx, detail) => detail != null
-              ? SiImages.resolve(detail.posters.first)
+          builder: (ctx, detail) => detail?.posters.isNotEmpty == true
+              ? SiImages.resolve(detail!.posters.first)
               : defaultImg(),
         ),
       ),

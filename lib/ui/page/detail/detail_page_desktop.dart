@@ -27,12 +27,11 @@ class __DesktopDetailPageState
   ///*
   @override
   void initState() {
-    isOverviewInHeader = MutableLiveData(true)..observe(this, (data) {
-      prind("isOverviewInHeader.observe data= $data this= $this");
-    });
+    isOverviewInHeader = MutableLiveData(true);
+    //..observe(this, (data) {prind("isOverviewInHeader.observe data= $data this= $this");});
     super.initState();
   }
-//   */
+// */
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +51,14 @@ class __DesktopDetailPageState
             height: double.infinity,
             child: _vmObserver(
               vm: vm,
-              builder: (ctx, data) => data != null
-                  ? SiImages.resolve(data.posters.first)
+              builder: (ctx, data) => data?.backdrops.isNotEmpty == true
+                  ? SiImages.resolve(data!.backdrops.first)
                   : defaultImg(),
             ),
           ),
           Expanded(
             child: Container(
-              color: black_trans_3,
+              color: black_trans_2,
             ),
           ),
         ],
@@ -76,10 +75,14 @@ class __DesktopDetailPageState
 
     final release = LiveDataObserver<Movie>(
       liveData: vm.currentMovie,
-      builder: (ctx, data) => data != null ? ThemedText.size0Bold(Text(
-        syncFormatTime(data.date),
-        style: TextStyle(color: Colors.white,),
-      )) : defaultLoading(),
+      builder: (ctx, data) {
+        if(data == null) return defaultEmptyWidget();
+        if(data.date == null) return defaultEmptyWidget();
+        return ThemedText.size0Bold(Text(
+          syncFormatTime(data.date!),
+          style: TextStyle(color: Colors.white,),
+        ));
+      },
     );
 
     final score = LiveDataObserver<Movie>(
@@ -106,18 +109,21 @@ class __DesktopDetailPageState
 
     final genres = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => data != null
           ? _Genres(data) : defaultEmptyWidget(),
     );
 
     final duration = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => data?.duration != null
           ? _DetailDuration(data!, textColor: Colors.white,) : defaultEmptyWidget(),
     );
 
     final tagline = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => data != null ?
       data.tagline?.isNotEmpty == true ? Container(
         margin: EdgeInsets.only(bottom: 15),
@@ -127,7 +133,7 @@ class __DesktopDetailPageState
             color: white_trans_2,
           ),
         )),
-      ) : defaultEmptyWidget() : defaultLoading(),
+      ) : defaultEmptyWidget() : defaultEmptyWidget(),
     );
 
     //var isOverviewInHeader = true;
@@ -142,7 +148,7 @@ class __DesktopDetailPageState
         //isOverviewInHeader.value = true;
         return LiveDataObserver<MovieDetail>(
           liveData: vm.detail,
-          builder: (ctx, data) => data != null ? Column(
+          builder: (ctx, data) => data?.overview.isNotEmpty == true ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ThemedText.size1Bold(Text(
@@ -153,7 +159,7 @@ class __DesktopDetailPageState
               Expanded(
                 child: SingleChildScrollView(
                   child: Text(
-                    data.overview,
+                    data!.overview,
                     style: TextStyle(color: Colors.white,),
                   ),
                 ),
@@ -289,9 +295,17 @@ class __DesktopDetailPageState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: stdLandscapeMoviePosterRatio,
-            child: mainHeader,
+          LayoutBuilder(
+            builder: (ctx, constr) {
+              final topSystemPadding = MediaQuery.of(ctx).padding.top;
+              return AspectRatio(
+                aspectRatio: stdLandscapeMoviePosterRatio,
+                child: Padding(
+                  padding: EdgeInsets.only(top: topSystemPadding),
+                  child: mainHeader,
+                ),
+              );
+            },
           ),
           Padding(
             padding: EdgeInsets.all(10),
@@ -321,7 +335,7 @@ class _DesktopCast extends StatelessWidget {
       builder: (ctx, constraint) {
         final ratio = 3/5;
         final imgLen = constraint.maxHeight * ratio -30;
-        prind("_MobileCast imgLen= $imgLen constraint= $constraint");
+        prind("_DesktopCast imgLen= $imgLen constraint= $constraint  cast= $cast");
 
         return AspectRatio(
           aspectRatio: ratio,
@@ -337,7 +351,7 @@ class _DesktopCast extends StatelessWidget {
                   flex: 9,
                   child: Container(
                     width: double.infinity,
-                    child: SiImages.resolve(cast.profile),
+                    child: SiImages.resolve(cast.profile ?? dummyImg),
                   ),
                 ),
                 Expanded(

@@ -7,7 +7,7 @@ part 'movie_images_api_model.freezed.dart';
 class MovieImageResponse with _$MovieImageResponse {
   const factory MovieImageResponse({
     @JsonKey(name: "id")
-    required String movieId,
+    required int movieId,
     required List<MovieImageDataResponse> backdrops,
     required List<MovieImageDataResponse> logos,
     required List<MovieImageDataResponse> posters,

@@ -9,7 +9,7 @@ part of 'movie_images_api_model.dart';
 _$_MovieImagesResponse _$_$_MovieImagesResponseFromJson(
     Map<String, dynamic> json) {
   return _$_MovieImagesResponse(
-    movieId: json['id'] as String,
+    movieId: json['id'] as int,
     backdrops: (json['backdrops'] as List<dynamic>)
         .map((e) => MovieImageDataResponse.fromJson(e as Map<String, dynamic>))
         .toList(),

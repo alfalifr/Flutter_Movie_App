@@ -13,12 +13,12 @@ _$_MovieDetailResponse _$_$_MovieDetailResponseFromJson(
     vote_average: json['vote_average'] as num,
     vote_count: json['vote_count'] as int,
     name: json['original_title'] as String,
-    tagline: json['tagline'] as String,
+    tagline: json['tagline'] as String?,
     overview: json['overview'] as String,
     homepage: json['homepage'] as String,
-    poster_path: json['poster_path'] as String,
-    backdrop_path: json['backdrop_path'] as String,
-    date: json['release_date'] as String,
+    poster_path: json['poster_path'] as String?,
+    backdrop_path: json['backdrop_path'] as String?,
+    date: json['release_date'] as String?,
     popularity: json['popularity'] as num,
     runtime: json['runtime'] as num?,
     genres: (json['genres'] as List<dynamic>)
@@ -70,7 +70,7 @@ _$_MovieDetailCompanyResponse _$_$_MovieDetailCompanyResponseFromJson(
     Map<String, dynamic> json) {
   return _$_MovieDetailCompanyResponse(
     id: json['id'] as int,
-    logo_path: json['logo_path'] as String,
+    logo_path: json['logo_path'] as String?,
     name: json['name'] as String,
     origin_country: json['origin_country'] as String,
   );

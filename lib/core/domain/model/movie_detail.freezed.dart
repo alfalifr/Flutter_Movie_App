@@ -18,7 +18,7 @@ class _$MovieDetailTearOff {
 
   _MovieDetail call(
       {required Movie movie,
-      required String tagline,
+      required String? tagline,
       required String overview,
       required String homepage,
       required num? duration,
@@ -62,7 +62,7 @@ mixin _$MovieDetail {
     required String type,
      */
   Movie get movie => throw _privateConstructorUsedError;
-  String get tagline => throw _privateConstructorUsedError;
+  String? get tagline => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   String get homepage =>
       throw _privateConstructorUsedError; //required ImgData backdrop,
@@ -88,7 +88,7 @@ abstract class $MovieDetailCopyWith<$Res> {
       _$MovieDetailCopyWithImpl<$Res>;
   $Res call(
       {Movie movie,
-      String tagline,
+      String? tagline,
       String overview,
       String homepage,
       num? duration,
@@ -134,7 +134,7 @@ class _$MovieDetailCopyWithImpl<$Res> implements $MovieDetailCopyWith<$Res> {
       tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ abstract class _$MovieDetailCopyWith<$Res>
   @override
   $Res call(
       {Movie movie,
-      String tagline,
+      String? tagline,
       String overview,
       String homepage,
       num? duration,
@@ -244,7 +244,7 @@ class __$MovieDetailCopyWithImpl<$Res> extends _$MovieDetailCopyWithImpl<$Res>
       tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -318,7 +318,7 @@ class _$_MovieDetail implements _MovieDetail {
      */
   final Movie movie;
   @override
-  final String tagline;
+  final String? tagline;
   @override
   final String overview;
   @override
@@ -406,7 +406,7 @@ class _$_MovieDetail implements _MovieDetail {
 abstract class _MovieDetail implements MovieDetail {
   const factory _MovieDetail(
       {required Movie movie,
-      required String tagline,
+      required String? tagline,
       required String overview,
       required String homepage,
       required num? duration,
@@ -430,7 +430,7 @@ abstract class _MovieDetail implements MovieDetail {
      */
   Movie get movie => throw _privateConstructorUsedError;
   @override
-  String get tagline => throw _privateConstructorUsedError;
+  String? get tagline => throw _privateConstructorUsedError;
   @override
   String get overview => throw _privateConstructorUsedError;
   @override
@@ -462,7 +462,7 @@ class _$CompanyTearOff {
   const _$CompanyTearOff();
 
   _Company call(
-      {required int id, required ImgData logo, required String name}) {
+      {required int id, required ImgData? logo, required String name}) {
     return _Company(
       id: id,
       logo: logo,
@@ -477,7 +477,7 @@ const $Company = _$CompanyTearOff();
 /// @nodoc
 mixin _$Company {
   int get id => throw _privateConstructorUsedError;
-  ImgData get logo => throw _privateConstructorUsedError;
+  ImgData? get logo => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -488,9 +488,9 @@ mixin _$Company {
 abstract class $CompanyCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res>;
-  $Res call({int id, ImgData logo, String name});
+  $Res call({int id, ImgData? logo, String name});
 
-  $ImgDataCopyWith<$Res> get logo;
+  $ImgDataCopyWith<$Res>? get logo;
 }
 
 /// @nodoc
@@ -515,7 +515,7 @@ class _$CompanyCopyWithImpl<$Res> implements $CompanyCopyWith<$Res> {
       logo: logo == freezed
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -524,8 +524,12 @@ class _$CompanyCopyWithImpl<$Res> implements $CompanyCopyWith<$Res> {
   }
 
   @override
-  $ImgDataCopyWith<$Res> get logo {
-    return $ImgDataCopyWith<$Res>(_value.logo, (value) {
+  $ImgDataCopyWith<$Res>? get logo {
+    if (_value.logo == null) {
+      return null;
+    }
+
+    return $ImgDataCopyWith<$Res>(_value.logo!, (value) {
       return _then(_value.copyWith(logo: value));
     });
   }
@@ -536,10 +540,10 @@ abstract class _$CompanyCopyWith<$Res> implements $CompanyCopyWith<$Res> {
   factory _$CompanyCopyWith(_Company value, $Res Function(_Company) then) =
       __$CompanyCopyWithImpl<$Res>;
   @override
-  $Res call({int id, ImgData logo, String name});
+  $Res call({int id, ImgData? logo, String name});
 
   @override
-  $ImgDataCopyWith<$Res> get logo;
+  $ImgDataCopyWith<$Res>? get logo;
 }
 
 /// @nodoc
@@ -565,7 +569,7 @@ class __$CompanyCopyWithImpl<$Res> extends _$CompanyCopyWithImpl<$Res>
       logo: logo == freezed
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -582,7 +586,7 @@ class _$_Company implements _Company {
   @override
   final int id;
   @override
-  final ImgData logo;
+  final ImgData? logo;
   @override
   final String name;
 
@@ -619,13 +623,13 @@ class _$_Company implements _Company {
 abstract class _Company implements Company {
   const factory _Company(
       {required int id,
-      required ImgData logo,
+      required ImgData? logo,
       required String name}) = _$_Company;
 
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  ImgData get logo => throw _privateConstructorUsedError;
+  ImgData? get logo => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
@@ -641,7 +645,7 @@ class _$CastTearOff {
   _Cast call(
       {required int id,
       required String name,
-      required ImgData profile,
+      required ImgData? profile,
       required String character}) {
     return _Cast(
       id: id,
@@ -659,7 +663,7 @@ const $Cast = _$CastTearOff();
 mixin _$Cast {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  ImgData get profile => throw _privateConstructorUsedError;
+  ImgData? get profile => throw _privateConstructorUsedError;
   String get character => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -670,9 +674,9 @@ mixin _$Cast {
 abstract class $CastCopyWith<$Res> {
   factory $CastCopyWith(Cast value, $Res Function(Cast) then) =
       _$CastCopyWithImpl<$Res>;
-  $Res call({int id, String name, ImgData profile, String character});
+  $Res call({int id, String name, ImgData? profile, String character});
 
-  $ImgDataCopyWith<$Res> get profile;
+  $ImgDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -702,7 +706,7 @@ class _$CastCopyWithImpl<$Res> implements $CastCopyWith<$Res> {
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       character: character == freezed
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -711,8 +715,12 @@ class _$CastCopyWithImpl<$Res> implements $CastCopyWith<$Res> {
   }
 
   @override
-  $ImgDataCopyWith<$Res> get profile {
-    return $ImgDataCopyWith<$Res>(_value.profile, (value) {
+  $ImgDataCopyWith<$Res>? get profile {
+    if (_value.profile == null) {
+      return null;
+    }
+
+    return $ImgDataCopyWith<$Res>(_value.profile!, (value) {
       return _then(_value.copyWith(profile: value));
     });
   }
@@ -723,10 +731,10 @@ abstract class _$CastCopyWith<$Res> implements $CastCopyWith<$Res> {
   factory _$CastCopyWith(_Cast value, $Res Function(_Cast) then) =
       __$CastCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name, ImgData profile, String character});
+  $Res call({int id, String name, ImgData? profile, String character});
 
   @override
-  $ImgDataCopyWith<$Res> get profile;
+  $ImgDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -757,7 +765,7 @@ class __$CastCopyWithImpl<$Res> extends _$CastCopyWithImpl<$Res>
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       character: character == freezed
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -780,7 +788,7 @@ class _$_Cast implements _Cast {
   @override
   final String name;
   @override
-  final ImgData profile;
+  final ImgData? profile;
   @override
   final String character;
 
@@ -823,7 +831,7 @@ abstract class _Cast implements Cast {
   const factory _Cast(
       {required int id,
       required String name,
-      required ImgData profile,
+      required ImgData? profile,
       required String character}) = _$_Cast;
 
   @override
@@ -831,7 +839,7 @@ abstract class _Cast implements Cast {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  ImgData get profile => throw _privateConstructorUsedError;
+  ImgData? get profile => throw _privateConstructorUsedError;
   @override
   String get character => throw _privateConstructorUsedError;
   @override
@@ -846,7 +854,7 @@ class _$CrewTearOff {
   _Crew call(
       {required int id,
       required String name,
-      required ImgData profile,
+      required ImgData? profile,
       required String department}) {
     return _Crew(
       id: id,
@@ -864,7 +872,7 @@ const $Crew = _$CrewTearOff();
 mixin _$Crew {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  ImgData get profile => throw _privateConstructorUsedError;
+  ImgData? get profile => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -875,9 +883,9 @@ mixin _$Crew {
 abstract class $CrewCopyWith<$Res> {
   factory $CrewCopyWith(Crew value, $Res Function(Crew) then) =
       _$CrewCopyWithImpl<$Res>;
-  $Res call({int id, String name, ImgData profile, String department});
+  $Res call({int id, String name, ImgData? profile, String department});
 
-  $ImgDataCopyWith<$Res> get profile;
+  $ImgDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -907,7 +915,7 @@ class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       department: department == freezed
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
@@ -916,8 +924,12 @@ class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
   }
 
   @override
-  $ImgDataCopyWith<$Res> get profile {
-    return $ImgDataCopyWith<$Res>(_value.profile, (value) {
+  $ImgDataCopyWith<$Res>? get profile {
+    if (_value.profile == null) {
+      return null;
+    }
+
+    return $ImgDataCopyWith<$Res>(_value.profile!, (value) {
       return _then(_value.copyWith(profile: value));
     });
   }
@@ -928,10 +940,10 @@ abstract class _$CrewCopyWith<$Res> implements $CrewCopyWith<$Res> {
   factory _$CrewCopyWith(_Crew value, $Res Function(_Crew) then) =
       __$CrewCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name, ImgData profile, String department});
+  $Res call({int id, String name, ImgData? profile, String department});
 
   @override
-  $ImgDataCopyWith<$Res> get profile;
+  $ImgDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -962,7 +974,7 @@ class __$CrewCopyWithImpl<$Res> extends _$CrewCopyWithImpl<$Res>
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       department: department == freezed
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
@@ -985,7 +997,7 @@ class _$_Crew implements _Crew {
   @override
   final String name;
   @override
-  final ImgData profile;
+  final ImgData? profile;
   @override
   final String department;
 
@@ -1028,7 +1040,7 @@ abstract class _Crew implements Crew {
   const factory _Crew(
       {required int id,
       required String name,
-      required ImgData profile,
+      required ImgData? profile,
       required String department}) = _$_Crew;
 
   @override
@@ -1036,7 +1048,7 @@ abstract class _Crew implements Crew {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  ImgData get profile => throw _privateConstructorUsedError;
+  ImgData? get profile => throw _privateConstructorUsedError;
   @override
   String get department => throw _privateConstructorUsedError;
   @override

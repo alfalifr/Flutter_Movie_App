@@ -204,10 +204,10 @@ class _$MovieTrendingDataResponseTearOff {
       required int vote_count,
       @JsonKey(name: "original_title") required String name,
       required String overview,
-      required String poster_path,
-      @JsonKey(name: "release_date") required String date,
+      required String? poster_path,
+      @JsonKey(name: "release_date") required String? date,
       required num popularity,
-      required String media_type}) {
+      required String? media_type}) {
     return _MovieTrendingDataResponse(
       id: id,
       vote_average: vote_average,
@@ -237,11 +237,11 @@ mixin _$MovieTrendingDataResponse {
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
-  String get poster_path => throw _privateConstructorUsedError;
+  String? get poster_path => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
-  String get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   num get popularity => throw _privateConstructorUsedError;
-  String get media_type => throw _privateConstructorUsedError;
+  String? get media_type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -260,10 +260,10 @@ abstract class $MovieTrendingDataResponseCopyWith<$Res> {
       int vote_count,
       @JsonKey(name: "original_title") String name,
       String overview,
-      String poster_path,
-      @JsonKey(name: "release_date") String date,
+      String? poster_path,
+      @JsonKey(name: "release_date") String? date,
       num popularity,
-      String media_type});
+      String? media_type});
 }
 
 /// @nodoc
@@ -311,11 +311,11 @@ class _$MovieTrendingDataResponseCopyWithImpl<$Res>
       poster_path: poster_path == freezed
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -323,7 +323,7 @@ class _$MovieTrendingDataResponseCopyWithImpl<$Res>
       media_type: media_type == freezed
           ? _value.media_type
           : media_type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -341,10 +341,10 @@ abstract class _$MovieTrendingDataResponseCopyWith<$Res>
       int vote_count,
       @JsonKey(name: "original_title") String name,
       String overview,
-      String poster_path,
-      @JsonKey(name: "release_date") String date,
+      String? poster_path,
+      @JsonKey(name: "release_date") String? date,
       num popularity,
-      String media_type});
+      String? media_type});
 }
 
 /// @nodoc
@@ -395,11 +395,11 @@ class __$MovieTrendingDataResponseCopyWithImpl<$Res>
       poster_path: poster_path == freezed
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -407,7 +407,7 @@ class __$MovieTrendingDataResponseCopyWithImpl<$Res>
       media_type: media_type == freezed
           ? _value.media_type
           : media_type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -441,14 +441,14 @@ class _$_MovieTrendingDataResponse implements _MovieTrendingDataResponse {
   @override
   final String overview;
   @override
-  final String poster_path;
+  final String? poster_path;
   @override
   @JsonKey(name: "release_date")
-  final String date;
+  final String? date;
   @override
   final num popularity;
   @override
-  final String media_type;
+  final String? media_type;
 
   @override
   String toString() {
@@ -518,10 +518,10 @@ abstract class _MovieTrendingDataResponse implements MovieTrendingDataResponse {
       required int vote_count,
       @JsonKey(name: "original_title") required String name,
       required String overview,
-      required String poster_path,
-      @JsonKey(name: "release_date") required String date,
+      required String? poster_path,
+      @JsonKey(name: "release_date") required String? date,
       required num popularity,
-      required String media_type}) = _$_MovieTrendingDataResponse;
+      required String? media_type}) = _$_MovieTrendingDataResponse;
 
   factory _MovieTrendingDataResponse.fromJson(Map<String, dynamic> json) =
       _$_MovieTrendingDataResponse.fromJson;
@@ -538,14 +538,14 @@ abstract class _MovieTrendingDataResponse implements MovieTrendingDataResponse {
   @override
   String get overview => throw _privateConstructorUsedError;
   @override
-  String get poster_path => throw _privateConstructorUsedError;
+  String? get poster_path => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "release_date")
-  String get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   @override
   num get popularity => throw _privateConstructorUsedError;
   @override
-  String get media_type => throw _privateConstructorUsedError;
+  String? get media_type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MovieTrendingDataResponseCopyWith<_MovieTrendingDataResponse>

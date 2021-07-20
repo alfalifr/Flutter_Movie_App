@@ -32,10 +32,10 @@ _$_MovieTrendingDataResponse _$_$_MovieTrendingDataResponseFromJson(
     vote_count: json['vote_count'] as int,
     name: json['original_title'] as String,
     overview: json['overview'] as String,
-    poster_path: json['poster_path'] as String,
-    date: json['release_date'] as String,
+    poster_path: json['poster_path'] as String?,
+    date: json['release_date'] as String?,
     popularity: json['popularity'] as num,
-    media_type: json['media_type'] as String,
+    media_type: json['media_type'] as String?,
   );
 }
 

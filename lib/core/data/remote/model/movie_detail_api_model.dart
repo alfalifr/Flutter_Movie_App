@@ -1,6 +1,7 @@
 
 
 
+import 'package:dicoding_movie_app/util/data_mapper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'movie_detail_api_model.g.dart';
@@ -16,21 +17,22 @@ class MovieDetailResponse with _$MovieDetailResponse {
     @JsonKey(name: "original_title")
     //@JsonKey(name: "original_name")
     required String name,
-    required String tagline,
+    required String? tagline,
     required String overview,
     required String homepage,
-    required String poster_path,
-    required String backdrop_path,
+    required String? poster_path,
+    required String? backdrop_path,
     @JsonKey(name: "release_date")
     //@JsonKey(name: "first_air_date")
-    required String date,
+    required String? date,
     required num popularity,
     required num? runtime, // Duration in minutes. Null if this is a TV show.
     required List<MovieDetailGenreResponse> genres,
     required List<MovieDetailCompanyResponse> production_companies,
     //required String media_type,
   }) = _MovieDetailResponse;
-  factory MovieDetailResponse.fromJson(Map<String, dynamic> map) = _MovieDetailResponse.fromJson;
+  factory MovieDetailResponse.fromJson(Map<String, dynamic> map) =>
+      _MovieDetailResponse.fromJson(getTunedMovieResponseMap(map));
 }
 
 
@@ -47,7 +49,7 @@ class MovieDetailGenreResponse with _$MovieDetailGenreResponse {
 class MovieDetailCompanyResponse with _$MovieDetailCompanyResponse {
   const factory MovieDetailCompanyResponse({
     required int id,
-    required String logo_path,
+    required String? logo_path,
     required String name,
     required String origin_country,
   }) = _MovieDetailCompanyResponse;

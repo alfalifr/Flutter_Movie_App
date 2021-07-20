@@ -13,8 +13,10 @@ class ImgData with _$ImgData {
     num? height,
   }) = _ImgData;
   //factory ImgData.fromJson(Map<String, dynamic> map) = _ImgData.fromJson;
-  factory ImgData.fromResponse(MovieImageDataResponse response) => ImgData(
-    link: response.file_path,
+  factory ImgData.fromResponse(MovieImageDataResponse response, {
+    String? prefix,
+  }) => ImgData(
+    link: prefix == null ? response.file_path : prefix +response.file_path,
     isLocal: false,
     width: response.width,
     height: response.height,

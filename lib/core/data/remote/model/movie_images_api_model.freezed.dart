@@ -21,7 +21,7 @@ class _$MovieImageResponseTearOff {
   const _$MovieImageResponseTearOff();
 
   _MovieImagesResponse call(
-      {@JsonKey(name: "id") required String movieId,
+      {@JsonKey(name: "id") required int movieId,
       required List<MovieImageDataResponse> backdrops,
       required List<MovieImageDataResponse> logos,
       required List<MovieImageDataResponse> posters}) {
@@ -44,7 +44,7 @@ const $MovieImageResponse = _$MovieImageResponseTearOff();
 /// @nodoc
 mixin _$MovieImageResponse {
   @JsonKey(name: "id")
-  String get movieId => throw _privateConstructorUsedError;
+  int get movieId => throw _privateConstructorUsedError;
   List<MovieImageDataResponse> get backdrops =>
       throw _privateConstructorUsedError;
   List<MovieImageDataResponse> get logos => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $MovieImageResponseCopyWith<$Res> {
           MovieImageResponse value, $Res Function(MovieImageResponse) then) =
       _$MovieImageResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id") String movieId,
+      {@JsonKey(name: "id") int movieId,
       List<MovieImageDataResponse> backdrops,
       List<MovieImageDataResponse> logos,
       List<MovieImageDataResponse> posters});
@@ -89,7 +89,7 @@ class _$MovieImageResponseCopyWithImpl<$Res>
       movieId: movieId == freezed
           ? _value.movieId
           : movieId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       backdrops: backdrops == freezed
           ? _value.backdrops
           : backdrops // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$MovieImagesResponseCopyWith<$Res>
       __$MovieImagesResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id") String movieId,
+      {@JsonKey(name: "id") int movieId,
       List<MovieImageDataResponse> backdrops,
       List<MovieImageDataResponse> logos,
       List<MovieImageDataResponse> posters});
@@ -142,7 +142,7 @@ class __$MovieImagesResponseCopyWithImpl<$Res>
       movieId: movieId == freezed
           ? _value.movieId
           : movieId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       backdrops: backdrops == freezed
           ? _value.backdrops
           : backdrops // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ class _$_MovieImagesResponse implements _MovieImagesResponse {
 
   @override
   @JsonKey(name: "id")
-  final String movieId;
+  final int movieId;
   @override
   final List<MovieImageDataResponse> backdrops;
   @override
@@ -224,7 +224,7 @@ class _$_MovieImagesResponse implements _MovieImagesResponse {
 
 abstract class _MovieImagesResponse implements MovieImageResponse {
   const factory _MovieImagesResponse(
-      {@JsonKey(name: "id") required String movieId,
+      {@JsonKey(name: "id") required int movieId,
       required List<MovieImageDataResponse> backdrops,
       required List<MovieImageDataResponse> logos,
       required List<MovieImageDataResponse> posters}) = _$_MovieImagesResponse;
@@ -234,7 +234,7 @@ abstract class _MovieImagesResponse implements MovieImageResponse {
 
   @override
   @JsonKey(name: "id")
-  String get movieId => throw _privateConstructorUsedError;
+  int get movieId => throw _privateConstructorUsedError;
   @override
   List<MovieImageDataResponse> get backdrops =>
       throw _privateConstructorUsedError;

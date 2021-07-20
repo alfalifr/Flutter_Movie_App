@@ -7,7 +7,7 @@ part 'movie_credits_api_model.freezed.dart';
 class MovieCreditsResponse with _$MovieCreditsResponse {
   const factory MovieCreditsResponse({
     @JsonKey(name: "id")
-    required String movie_id,
+    required int movie_id,
     required List<MovieCastResponse> cast,
     required List<MovieCrewResponse> crew,
   }) = _MovieCreditsResponse;
@@ -20,7 +20,7 @@ class MovieCastResponse with _$MovieCastResponse {
     required int id,
     required int gender,
     required String name,
-    required String profile_path,
+    required String? profile_path,
     required String character,
     required num popularity,
   }) = _MovieCastResponse;
@@ -33,7 +33,7 @@ class MovieCrewResponse with _$MovieCrewResponse {
     required int id,
     required int gender,
     required String name,
-    required String profile_path,
+    required String? profile_path,
     required String known_for_department,
     required String department,
     required num popularity,

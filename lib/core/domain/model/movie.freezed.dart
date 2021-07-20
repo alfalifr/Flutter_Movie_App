@@ -21,8 +21,8 @@ class _$MovieTearOff {
       required num voteAverage,
       required int voteCount,
       required String name,
-      required ImgData poster,
-      required DateTime date,
+      required ImgData? poster,
+      required DateTime? date,
       required String type}) {
     return _Movie(
       id: id,
@@ -45,8 +45,8 @@ mixin _$Movie {
   num get voteAverage => throw _privateConstructorUsedError;
   int get voteCount => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  ImgData get poster => throw _privateConstructorUsedError;
-  DateTime get date =>
+  ImgData? get poster => throw _privateConstructorUsedError;
+  DateTime? get date =>
       throw _privateConstructorUsedError; //required num popularity,
   String get type => throw _privateConstructorUsedError;
 
@@ -63,11 +63,11 @@ abstract class $MovieCopyWith<$Res> {
       num voteAverage,
       int voteCount,
       String name,
-      ImgData poster,
-      DateTime date,
+      ImgData? poster,
+      DateTime? date,
       String type});
 
-  $ImgDataCopyWith<$Res> get poster;
+  $ImgDataCopyWith<$Res>? get poster;
 }
 
 /// @nodoc
@@ -108,11 +108,11 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
       poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -121,8 +121,12 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
   }
 
   @override
-  $ImgDataCopyWith<$Res> get poster {
-    return $ImgDataCopyWith<$Res>(_value.poster, (value) {
+  $ImgDataCopyWith<$Res>? get poster {
+    if (_value.poster == null) {
+      return null;
+    }
+
+    return $ImgDataCopyWith<$Res>(_value.poster!, (value) {
       return _then(_value.copyWith(poster: value));
     });
   }
@@ -138,12 +142,12 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       num voteAverage,
       int voteCount,
       String name,
-      ImgData poster,
-      DateTime date,
+      ImgData? poster,
+      DateTime? date,
       String type});
 
   @override
-  $ImgDataCopyWith<$Res> get poster;
+  $ImgDataCopyWith<$Res>? get poster;
 }
 
 /// @nodoc
@@ -185,11 +189,11 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
       poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
-              as ImgData,
+              as ImgData?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -219,9 +223,9 @@ class _$_Movie implements _Movie {
   @override
   final String name;
   @override
-  final ImgData poster;
+  final ImgData? poster;
   @override
-  final DateTime date;
+  final DateTime? date;
   @override //required num popularity,
   final String type;
 
@@ -275,8 +279,8 @@ abstract class _Movie implements Movie {
       required num voteAverage,
       required int voteCount,
       required String name,
-      required ImgData poster,
-      required DateTime date,
+      required ImgData? poster,
+      required DateTime? date,
       required String type}) = _$_Movie;
 
   @override
@@ -288,9 +292,9 @@ abstract class _Movie implements Movie {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  ImgData get poster => throw _privateConstructorUsedError;
+  ImgData? get poster => throw _privateConstructorUsedError;
   @override
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   @override //required num popularity,
   String get type => throw _privateConstructorUsedError;
   @override

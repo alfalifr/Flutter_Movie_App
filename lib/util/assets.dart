@@ -1,5 +1,6 @@
 
 import 'package:dicoding_movie_app/core/domain/model/img.dart';
+import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/img_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,7 +19,12 @@ class SiImages {
     final dir = getDir(fileName);
     if(package != null) {
       if(fileName.endsWith(".svg"))
-        return SvgPicture.asset(dir, width: width, height: height, fit: usedFit, package: package,);
+        return SvgPicture.asset(dir, width: width, height: height, fit: usedFit, package: package,
+          placeholderBuilder: (ctx) {
+            prind("SibImages.get() image with file name '$fileName' doesn't exist in package '$package'. Trying to look in default package...");
+            return get(fileName, width: width, height: height, fit: usedFit,);
+          },
+        );
       return Image.asset(dir, width: width, height: height, fit: usedFit, package: package,
           errorBuilder: (ctx, error, stackTrace,) {
             prind("SibImages.get() image with file name '$fileName' doesn't exist in package '$package'. Trying to look in default package...");
@@ -28,7 +34,11 @@ class SiImages {
       );
     } else {
       if(fileName.endsWith(".svg"))
-        return SvgPicture.asset(dir, width: width, height: height, fit: usedFit,);
+        return SvgPicture.asset(dir, width: width, height: height, fit: usedFit,
+          placeholderBuilder: (ctx) => !showError
+              ? defaultImg()
+              : defaultError(text: "Svg img Load Error"),
+        );
       return Image.asset(dir, width: width, height: height, fit: usedFit,
         errorBuilder: !showError
             ? defImgBuilder()

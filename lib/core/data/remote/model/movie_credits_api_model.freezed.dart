@@ -21,7 +21,7 @@ class _$MovieCreditsResponseTearOff {
   const _$MovieCreditsResponseTearOff();
 
   _MovieCreditsResponse call(
-      {@JsonKey(name: "id") required String movie_id,
+      {@JsonKey(name: "id") required int movie_id,
       required List<MovieCastResponse> cast,
       required List<MovieCrewResponse> crew}) {
     return _MovieCreditsResponse(
@@ -42,7 +42,7 @@ const $MovieCreditsResponse = _$MovieCreditsResponseTearOff();
 /// @nodoc
 mixin _$MovieCreditsResponse {
   @JsonKey(name: "id")
-  String get movie_id => throw _privateConstructorUsedError;
+  int get movie_id => throw _privateConstructorUsedError;
   List<MovieCastResponse> get cast => throw _privateConstructorUsedError;
   List<MovieCrewResponse> get crew => throw _privateConstructorUsedError;
 
@@ -58,7 +58,7 @@ abstract class $MovieCreditsResponseCopyWith<$Res> {
           $Res Function(MovieCreditsResponse) then) =
       _$MovieCreditsResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id") String movie_id,
+      {@JsonKey(name: "id") int movie_id,
       List<MovieCastResponse> cast,
       List<MovieCrewResponse> crew});
 }
@@ -82,7 +82,7 @@ class _$MovieCreditsResponseCopyWithImpl<$Res>
       movie_id: movie_id == freezed
           ? _value.movie_id
           : movie_id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       cast: cast == freezed
           ? _value.cast
           : cast // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$MovieCreditsResponseCopyWith<$Res>
       __$MovieCreditsResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id") String movie_id,
+      {@JsonKey(name: "id") int movie_id,
       List<MovieCastResponse> cast,
       List<MovieCrewResponse> crew});
 }
@@ -129,7 +129,7 @@ class __$MovieCreditsResponseCopyWithImpl<$Res>
       movie_id: movie_id == freezed
           ? _value.movie_id
           : movie_id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       cast: cast == freezed
           ? _value.cast
           : cast // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,7 @@ class _$_MovieCreditsResponse implements _MovieCreditsResponse {
 
   @override
   @JsonKey(name: "id")
-  final String movie_id;
+  final int movie_id;
   @override
   final List<MovieCastResponse> cast;
   @override
@@ -200,7 +200,7 @@ class _$_MovieCreditsResponse implements _MovieCreditsResponse {
 
 abstract class _MovieCreditsResponse implements MovieCreditsResponse {
   const factory _MovieCreditsResponse(
-      {@JsonKey(name: "id") required String movie_id,
+      {@JsonKey(name: "id") required int movie_id,
       required List<MovieCastResponse> cast,
       required List<MovieCrewResponse> crew}) = _$_MovieCreditsResponse;
 
@@ -209,7 +209,7 @@ abstract class _MovieCreditsResponse implements MovieCreditsResponse {
 
   @override
   @JsonKey(name: "id")
-  String get movie_id => throw _privateConstructorUsedError;
+  int get movie_id => throw _privateConstructorUsedError;
   @override
   List<MovieCastResponse> get cast => throw _privateConstructorUsedError;
   @override
@@ -232,7 +232,7 @@ class _$MovieCastResponseTearOff {
       {required int id,
       required int gender,
       required String name,
-      required String profile_path,
+      required String? profile_path,
       required String character,
       required num popularity}) {
     return _MovieCastResponse(
@@ -258,7 +258,7 @@ mixin _$MovieCastResponse {
   int get id => throw _privateConstructorUsedError;
   int get gender => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get profile_path => throw _privateConstructorUsedError;
+  String? get profile_path => throw _privateConstructorUsedError;
   String get character => throw _privateConstructorUsedError;
   num get popularity => throw _privateConstructorUsedError;
 
@@ -277,7 +277,7 @@ abstract class $MovieCastResponseCopyWith<$Res> {
       {int id,
       int gender,
       String name,
-      String profile_path,
+      String? profile_path,
       String character,
       num popularity});
 }
@@ -316,7 +316,7 @@ class _$MovieCastResponseCopyWithImpl<$Res>
       profile_path: profile_path == freezed
           ? _value.profile_path
           : profile_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       character: character == freezed
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ abstract class _$MovieCastResponseCopyWith<$Res>
       {int id,
       int gender,
       String name,
-      String profile_path,
+      String? profile_path,
       String character,
       num popularity});
 }
@@ -381,7 +381,7 @@ class __$MovieCastResponseCopyWithImpl<$Res>
       profile_path: profile_path == freezed
           ? _value.profile_path
           : profile_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       character: character == freezed
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -415,7 +415,7 @@ class _$_MovieCastResponse implements _MovieCastResponse {
   @override
   final String name;
   @override
-  final String profile_path;
+  final String? profile_path;
   @override
   final String character;
   @override
@@ -473,7 +473,7 @@ abstract class _MovieCastResponse implements MovieCastResponse {
       {required int id,
       required int gender,
       required String name,
-      required String profile_path,
+      required String? profile_path,
       required String character,
       required num popularity}) = _$_MovieCastResponse;
 
@@ -487,7 +487,7 @@ abstract class _MovieCastResponse implements MovieCastResponse {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  String get profile_path => throw _privateConstructorUsedError;
+  String? get profile_path => throw _privateConstructorUsedError;
   @override
   String get character => throw _privateConstructorUsedError;
   @override
@@ -510,7 +510,7 @@ class _$MovieCrewResponseTearOff {
       {required int id,
       required int gender,
       required String name,
-      required String profile_path,
+      required String? profile_path,
       required String known_for_department,
       required String department,
       required num popularity}) {
@@ -538,7 +538,7 @@ mixin _$MovieCrewResponse {
   int get id => throw _privateConstructorUsedError;
   int get gender => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get profile_path => throw _privateConstructorUsedError;
+  String? get profile_path => throw _privateConstructorUsedError;
   String get known_for_department => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
   num get popularity => throw _privateConstructorUsedError;
@@ -558,7 +558,7 @@ abstract class $MovieCrewResponseCopyWith<$Res> {
       {int id,
       int gender,
       String name,
-      String profile_path,
+      String? profile_path,
       String known_for_department,
       String department,
       num popularity});
@@ -599,7 +599,7 @@ class _$MovieCrewResponseCopyWithImpl<$Res>
       profile_path: profile_path == freezed
           ? _value.profile_path
           : profile_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       known_for_department: known_for_department == freezed
           ? _value.known_for_department
           : known_for_department // ignore: cast_nullable_to_non_nullable
@@ -627,7 +627,7 @@ abstract class _$MovieCrewResponseCopyWith<$Res>
       {int id,
       int gender,
       String name,
-      String profile_path,
+      String? profile_path,
       String known_for_department,
       String department,
       num popularity});
@@ -670,7 +670,7 @@ class __$MovieCrewResponseCopyWithImpl<$Res>
       profile_path: profile_path == freezed
           ? _value.profile_path
           : profile_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       known_for_department: known_for_department == freezed
           ? _value.known_for_department
           : known_for_department // ignore: cast_nullable_to_non_nullable
@@ -709,7 +709,7 @@ class _$_MovieCrewResponse implements _MovieCrewResponse {
   @override
   final String name;
   @override
-  final String profile_path;
+  final String? profile_path;
   @override
   final String known_for_department;
   @override
@@ -773,7 +773,7 @@ abstract class _MovieCrewResponse implements MovieCrewResponse {
       {required int id,
       required int gender,
       required String name,
-      required String profile_path,
+      required String? profile_path,
       required String known_for_department,
       required String department,
       required num popularity}) = _$_MovieCrewResponse;
@@ -788,7 +788,7 @@ abstract class _MovieCrewResponse implements MovieCrewResponse {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  String get profile_path => throw _privateConstructorUsedError;
+  String? get profile_path => throw _privateConstructorUsedError;
   @override
   String get known_for_department => throw _privateConstructorUsedError;
   @override

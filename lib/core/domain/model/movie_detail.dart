@@ -3,7 +3,9 @@ import 'package:dicoding_movie_app/core/data/remote/model/movie_detail_api_model
 import 'package:dicoding_movie_app/core/data/remote/model/movie_images_api_model.dart';
 import 'package:dicoding_movie_app/core/domain/model/img.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
+import 'package:dicoding_movie_app/util/const.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viewmodel/util/_consoles.dart';
 
 part 'movie_detail.freezed.dart';
 
@@ -21,7 +23,7 @@ class MovieDetail with _$MovieDetail {
     required String type,
      */
     required Movie movie,
-    required String tagline,
+    required String? tagline,
     required String overview,
     required String homepage,
     //required ImgData backdrop,
@@ -48,9 +50,9 @@ class MovieDetail with _$MovieDetail {
     final companies = detail.production_companies.map((e) => Company.fromResponse(e)).toList(growable: false);
     final casts = credits.cast.map((e) => Cast.fromResponse(e)).toList(growable: false);
     final crews = credits.crew.map((e) => Crew.fromResponse(e)).toList(growable: false);
-    final posters = images.posters.map((e) => ImgData.fromResponse(e)).toList(growable: false);
+    final posters = images.posters.map((e) => ImgData.fromResponse(e, prefix: Const.ENDPOINT_IMG_300x450)).toList(growable: false);
     final logos = images.logos.map((e) => ImgData.fromResponse(e)).toList(growable: false);
-    final backdrops = images.backdrops.map((e) => ImgData.fromResponse(e)).toList(growable: false);
+    final backdrops = images.backdrops.map((e) => ImgData.fromResponse(e, prefix: Const.ENDPOINT_IMG_533x300)).toList(growable: false);
 
     return MovieDetail(
       movie: movie,
@@ -73,16 +75,16 @@ class MovieDetail with _$MovieDetail {
 class Company with _$Company {
   const factory Company({
     required int id,
-    required ImgData logo,
+    required ImgData? logo,
     required String name,
   }) = _Company;
   //factory Company.fromJson(Map<String, dynamic> map) = _Company.fromJson;
   factory Company.fromResponse(MovieDetailCompanyResponse response) => Company(
     id: response.id,
-    logo: ImgData(
-      link: response.logo_path,
+    logo: response.logo_path != null ? ImgData(
+      link: response.logo_path!,
       isLocal: false,
-    ),
+    ) : null,
     name: response.name,
   );
 }
@@ -92,17 +94,17 @@ class Cast with _$Cast {
   const factory Cast({
     required int id,
     required String name,
-    required ImgData profile,
+    required ImgData? profile,
     required String character,
   }) = _Cast;
   //factory Cast.fromJson(Map<String, dynamic> map) = _Cast.fromJson;
   factory Cast.fromResponse(MovieCastResponse response) => Cast(
     id: response.id,
     name: response.name,
-    profile: ImgData(
-      link: response.profile_path,
+    profile: response.profile_path != null ? ImgData(
+      link: Const.ENDPOINT_IMG_276x350_FACE +response.profile_path!,
       isLocal: false,
-    ),
+    ) : null,
     character: response.character,
   );
 }
@@ -112,16 +114,16 @@ class Crew with _$Crew {
   const factory Crew({
     required int id,
     required String name,
-    required ImgData profile,
+    required ImgData? profile,
     required String department,
   }) = _Crew;
   factory Crew.fromResponse(MovieCrewResponse response) => Crew(
     id: response.id,
     name: response.name,
-    profile: ImgData(
-      link: response.profile_path,
+    profile: response.profile_path != null ? ImgData(
+      link: Const.ENDPOINT_IMG_276x350_FACE +response.profile_path!,
       isLocal: false,
-    ),
+    ) : null,
     department: response.known_for_department,
   );
 }

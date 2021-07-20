@@ -63,3 +63,27 @@ String getArtistStr(List<Crew> crews) {
   }
   return list.join(", ");
 }
+
+Map<String, dynamic> getTunedMovieResponseMap(Map<String, dynamic> rawMap) {
+  // This is because Dart's json_serializable can't have multiple date, not like Java GSON.
+  if(!rawMap.containsKey("original_title")) {
+    final name = rawMap["original_name"];
+    if(name == null) {
+      throw "The movie doesn't have a name";
+    }
+    rawMap["original_title"] = name;
+  }
+  if(!rawMap.containsKey("release_date")) {
+    final date = rawMap["first_air_date"];
+    if(date == null) {
+      prinw("The movie '${rawMap["original_title"] ?? "<null>"}' doesn't have a date");
+    } else {
+      rawMap["release_date"] = date;
+    }
+  }
+  final name = rawMap["original_title"];
+  final poster = rawMap["poster_path"];
+  prind("MovieTrendingDataResponse.fromJson '$name' poster= $poster poster == null => ${poster == null} rawMap.containsKey('poster_path') = ${rawMap.containsKey('poster_path')}");
+
+  return rawMap;
+}

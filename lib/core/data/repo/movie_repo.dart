@@ -31,7 +31,7 @@ class MovieRepoImpl extends MovieRepo {
   Future<Result<List<Movie>>> getMoviePopular({int page = 1,}) async {
     final res = await _remoteSrc.getMoviePopular(page: page);
     if(res is Success<MovieTrendingResponse>) {
-      final list = Movie.fromResponse(res.data);
+      final list = Movie.fromResponse(res.data, type: Const.KEY_MOVIE);
       return Success(list);
     }
     return (res as Fail<MovieTrendingResponse>).copy();
@@ -40,7 +40,7 @@ class MovieRepoImpl extends MovieRepo {
   Future<Result<List<Movie>>> getTvPopular({int page = 1,}) async {
     final res = await _remoteSrc.getTvPopular(page: page);
     if(res is Success<MovieTrendingResponse>) {
-      final list = Movie.fromResponse(res.data);
+      final list = Movie.fromResponse(res.data, type: Const.KEY_TV);
       return Success(list);
     }
     return (res as Fail<MovieTrendingResponse>).copy();

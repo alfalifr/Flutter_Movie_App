@@ -1,12 +1,15 @@
 import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dicoding_movie_app/core/domain/dummy_data.dart';
 import 'package:dicoding_movie_app/core/domain/model/img.dart';
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:dicoding_movie_app/res/colors.dart';
 import 'package:dicoding_movie_app/res/dimes.dart';
+import 'package:dicoding_movie_app/ui/widget/default_widget.dart';
 import 'package:dicoding_movie_app/ui/widget/text_widget.dart';
 import 'package:dicoding_movie_app/util/assets.dart';
+import 'package:dicoding_movie_app/util/const.dart';
 import 'package:dicoding_movie_app/util/times.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,9 +18,9 @@ import 'package:viewmodel/util/_consoles.dart';
 
 
 class ItemPopular extends StatelessWidget {
-  final ImgData img;
+  final ImgData? img;
   final String title;
-  final DateTime date;
+  final DateTime? date;
   final num score;
   final int vote;
   final double? preferredWidth;
@@ -48,9 +51,9 @@ class ItemPopular extends StatelessWidget {
     final imgWidth = preferredWidth ?? 190.0;
     final imgHeight = imgWidth / ratio;
 
-    prind("ItemPopular imgWidth= $imgWidth preferredWidth= $preferredWidth");
+    prind("ItemPopular imgWidth= $imgWidth preferredWidth= $preferredWidth img= $img");
 
-    final image = SiImages.resolve(img, width: 100);
+    final image = SiImages.resolve(img ?? dummyImg, width: 100);
     final imgChild = Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -94,8 +97,10 @@ class ItemPopular extends StatelessWidget {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           )),
-                          SizedBox(height: 10,),
-                          Text(syncFormatTime(date)),
+                          date != null ? Container(
+                            margin: EdgeInsets.only(top: 10),
+                            child: Text(syncFormatTime(date!)),
+                          ) : defaultEmptyWidget(),
                         ],
                       ),
                     ),
@@ -155,12 +160,12 @@ class ItemMovieScore extends StatelessWidget {
                   width: double.infinity,
                   height: double.infinity,
                   child: CircularProgressIndicator(
-                    value: score.toDouble() / 100,
+                    value: score.toDouble() / Const.DEF_SCORE_SCALE,
                     strokeWidth: 5,
                     color: getColorPointFromLinearGradient(
                       first: red,
                       last: green_light,
-                      point: score.toDouble() / 100,
+                      point: score.toDouble() / Const.DEF_SCORE_SCALE,
                     ),
                   ),
                 ),
@@ -219,7 +224,7 @@ class ItemTrendingMobile extends StatelessWidget {
             child: Container(
               height: double.infinity,
               width: width,
-              child: SiImages.resolve(data.poster),
+              child: SiImages.resolve(data.poster ?? dummyImg),
             ),
           ),
         ),

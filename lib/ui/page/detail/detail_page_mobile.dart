@@ -20,8 +20,8 @@ class _MobileDetailPage extends StatelessWidget {
                 aspectRatio: stdLandscapeMoviePosterRatio,
                 child: _vmObserver(
                   vm: vm,
-                  builder: (ctx, detail) => detail != null
-                      ? SiImages.resolve(detail.backdrops.first)
+                  builder: (ctx, detail) => detail?.backdrops.isNotEmpty == true
+                      ? SiImages.resolve(detail!.backdrops.first)
                       : defaultImg(),
                 ),
               ),
@@ -29,7 +29,7 @@ class _MobileDetailPage extends StatelessWidget {
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        white_trans_4,
+                        white_trans_3,
                         Colors.transparent,
                       ],
                       begin: Alignment.bottomCenter,
@@ -59,6 +59,7 @@ class _MobileDetailPage extends StatelessWidget {
 
     final tagline = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => data != null ?
       data.tagline?.isNotEmpty == true ? Container(
         margin: EdgeInsets.only(bottom: 15),
@@ -73,6 +74,7 @@ class _MobileDetailPage extends StatelessWidget {
 
     final score = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -82,7 +84,7 @@ class _MobileDetailPage extends StatelessWidget {
             color: data != null ? getColorPointFromLinearGradient(
               first: red,
               last: green_light,
-              point: data.movie.voteAverage / 100,
+              point: data.movie.voteAverage / Const.DEF_SCORE_SCALE,
             ) : grey_3,
           ),
           SizedBox(width: 5,),
@@ -97,6 +99,7 @@ class _MobileDetailPage extends StatelessWidget {
 
     final duration = _vmObserver(
       vm: vm,
+      preAsyncBuilder: (ctx, str) => defaultEmptyWidget(),
       builder: (ctx, data) => data?.duration != null
           ? _DetailDuration(data!) : defaultEmptyWidget(),
     );
@@ -167,10 +170,10 @@ class _MobileDetailPage extends StatelessWidget {
             child: defaultLoading(),
           );
         }
-        final release = _MobileDetailText(
+        final release = data.movie.date != null ? _MobileDetailText(
           title: "Release date",
-          desc: syncFormatTime(data.movie.date),
-        );
+          desc: syncFormatTime(data.movie.date!),
+        ) : defaultEmptyWidget();
         final directors = _MobileDetailText(
           title: "Directors",
           desc: getDirectorStr(data.crews),
@@ -201,9 +204,9 @@ class _MobileDetailPage extends StatelessWidget {
                 "Overview",
               )),
               SizedBox(height: 10,),
-              ThemedText.sizeM1(Text(
+              data.overview.isNotEmpty ? ThemedText.sizeM1(Text(
                 data.overview,
-              )),
+              )) : defaultEmptyWidget(),
               SizedBox(height: 15,),
               ThemedText.size0Bold(Text(
                 "Cast",
@@ -355,7 +358,7 @@ class _MobileDetailPage extends StatelessWidget {
               color: getColorPointFromLinearGradient(
                 first: red,
                 last: green_light,
-                point: data.movie.voteAverage / 100,
+                point: data.movie.voteAverage / Const.DEF_SCORE_SCALE,
               ),
             ),
             SizedBox(width: 5,),
@@ -549,7 +552,7 @@ class _MobileCast extends StatelessWidget {
       builder: (ctx, constraint) {
         final ratio = 3.5/5;
         final imgLen = constraint.maxHeight * ratio -30;
-        prind("_MobileCast imgLen= $imgLen constraint= $constraint");
+        prind("_MobileCast imgLen= $imgLen constraint= $constraint cast= $cast");
 
         return AspectRatio(
           aspectRatio: ratio,
@@ -561,7 +564,7 @@ class _MobileCast extends StatelessWidget {
                   child: Container(
                     height: imgLen,
                     width: imgLen,
-                    child: SiImages.resolve(cast.profile),
+                    child: SiImages.resolve(cast.profile ?? dummyImg),
                   ),
                 ),
                 SizedBox(height: 10,),

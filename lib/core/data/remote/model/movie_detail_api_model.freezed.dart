@@ -25,12 +25,12 @@ class _$MovieDetailResponseTearOff {
       required num vote_average,
       required int vote_count,
       @JsonKey(name: "original_title") required String name,
-      required String tagline,
+      required String? tagline,
       required String overview,
       required String homepage,
-      required String poster_path,
-      required String backdrop_path,
-      @JsonKey(name: "release_date") required String date,
+      required String? poster_path,
+      required String? backdrop_path,
+      @JsonKey(name: "release_date") required String? date,
       required num popularity,
       required num? runtime,
       required List<MovieDetailGenreResponse> genres,
@@ -68,13 +68,13 @@ mixin _$MovieDetailResponse {
   int get vote_count => throw _privateConstructorUsedError;
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;
-  String get tagline => throw _privateConstructorUsedError;
+  String? get tagline => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   String get homepage => throw _privateConstructorUsedError;
-  String get poster_path => throw _privateConstructorUsedError;
-  String get backdrop_path => throw _privateConstructorUsedError;
+  String? get poster_path => throw _privateConstructorUsedError;
+  String? get backdrop_path => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
-  String get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   num get popularity => throw _privateConstructorUsedError;
   num? get runtime =>
       throw _privateConstructorUsedError; // Duration in minutes. Null if this is a TV show.
@@ -99,12 +99,12 @@ abstract class $MovieDetailResponseCopyWith<$Res> {
       num vote_average,
       int vote_count,
       @JsonKey(name: "original_title") String name,
-      String tagline,
+      String? tagline,
       String overview,
       String homepage,
-      String poster_path,
-      String backdrop_path,
-      @JsonKey(name: "release_date") String date,
+      String? poster_path,
+      String? backdrop_path,
+      @JsonKey(name: "release_date") String? date,
       num popularity,
       num? runtime,
       List<MovieDetailGenreResponse> genres,
@@ -157,7 +157,7 @@ class _$MovieDetailResponseCopyWithImpl<$Res>
       tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -169,15 +169,15 @@ class _$MovieDetailResponseCopyWithImpl<$Res>
       poster_path: poster_path == freezed
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       backdrop_path: backdrop_path == freezed
           ? _value.backdrop_path
           : backdrop_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -210,12 +210,12 @@ abstract class _$MovieDetailResponseCopyWith<$Res>
       num vote_average,
       int vote_count,
       @JsonKey(name: "original_title") String name,
-      String tagline,
+      String? tagline,
       String overview,
       String homepage,
-      String poster_path,
-      String backdrop_path,
-      @JsonKey(name: "release_date") String date,
+      String? poster_path,
+      String? backdrop_path,
+      @JsonKey(name: "release_date") String? date,
       num popularity,
       num? runtime,
       List<MovieDetailGenreResponse> genres,
@@ -270,7 +270,7 @@ class __$MovieDetailResponseCopyWithImpl<$Res>
       tagline: tagline == freezed
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -282,15 +282,15 @@ class __$MovieDetailResponseCopyWithImpl<$Res>
       poster_path: poster_path == freezed
           ? _value.poster_path
           : poster_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       backdrop_path: backdrop_path == freezed
           ? _value.backdrop_path
           : backdrop_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -343,18 +343,18 @@ class _$_MovieDetailResponse implements _MovieDetailResponse {
   @JsonKey(name: "original_title")
   final String name;
   @override
-  final String tagline;
+  final String? tagline;
   @override
   final String overview;
   @override
   final String homepage;
   @override
-  final String poster_path;
+  final String? poster_path;
   @override
-  final String backdrop_path;
+  final String? backdrop_path;
   @override
   @JsonKey(name: "release_date")
-  final String date;
+  final String? date;
   @override
   final num popularity;
   @override
@@ -449,12 +449,12 @@ abstract class _MovieDetailResponse implements MovieDetailResponse {
           required num vote_average,
           required int vote_count,
           @JsonKey(name: "original_title") required String name,
-          required String tagline,
+          required String? tagline,
           required String overview,
           required String homepage,
-          required String poster_path,
-          required String backdrop_path,
-          @JsonKey(name: "release_date") required String date,
+          required String? poster_path,
+          required String? backdrop_path,
+          @JsonKey(name: "release_date") required String? date,
           required num popularity,
           required num? runtime,
           required List<MovieDetailGenreResponse> genres,
@@ -474,18 +474,18 @@ abstract class _MovieDetailResponse implements MovieDetailResponse {
   @JsonKey(name: "original_title")
   String get name => throw _privateConstructorUsedError;
   @override
-  String get tagline => throw _privateConstructorUsedError;
+  String? get tagline => throw _privateConstructorUsedError;
   @override
   String get overview => throw _privateConstructorUsedError;
   @override
   String get homepage => throw _privateConstructorUsedError;
   @override
-  String get poster_path => throw _privateConstructorUsedError;
+  String? get poster_path => throw _privateConstructorUsedError;
   @override
-  String get backdrop_path => throw _privateConstructorUsedError;
+  String? get backdrop_path => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "release_date")
-  String get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   @override
   num get popularity => throw _privateConstructorUsedError;
   @override
@@ -686,7 +686,7 @@ class _$MovieDetailCompanyResponseTearOff {
 
   _MovieDetailCompanyResponse call(
       {required int id,
-      required String logo_path,
+      required String? logo_path,
       required String name,
       required String origin_country}) {
     return _MovieDetailCompanyResponse(
@@ -708,7 +708,7 @@ const $MovieDetailCompanyResponse = _$MovieDetailCompanyResponseTearOff();
 /// @nodoc
 mixin _$MovieDetailCompanyResponse {
   int get id => throw _privateConstructorUsedError;
-  String get logo_path => throw _privateConstructorUsedError;
+  String? get logo_path => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get origin_country => throw _privateConstructorUsedError;
 
@@ -723,7 +723,7 @@ abstract class $MovieDetailCompanyResponseCopyWith<$Res> {
   factory $MovieDetailCompanyResponseCopyWith(MovieDetailCompanyResponse value,
           $Res Function(MovieDetailCompanyResponse) then) =
       _$MovieDetailCompanyResponseCopyWithImpl<$Res>;
-  $Res call({int id, String logo_path, String name, String origin_country});
+  $Res call({int id, String? logo_path, String name, String origin_country});
 }
 
 /// @nodoc
@@ -750,7 +750,7 @@ class _$MovieDetailCompanyResponseCopyWithImpl<$Res>
       logo_path: logo_path == freezed
           ? _value.logo_path
           : logo_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -771,7 +771,7 @@ abstract class _$MovieDetailCompanyResponseCopyWith<$Res>
           $Res Function(_MovieDetailCompanyResponse) then) =
       __$MovieDetailCompanyResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String logo_path, String name, String origin_country});
+  $Res call({int id, String? logo_path, String name, String origin_country});
 }
 
 /// @nodoc
@@ -801,7 +801,7 @@ class __$MovieDetailCompanyResponseCopyWithImpl<$Res>
       logo_path: logo_path == freezed
           ? _value.logo_path
           : logo_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -829,7 +829,7 @@ class _$_MovieDetailCompanyResponse implements _MovieDetailCompanyResponse {
   @override
   final int id;
   @override
-  final String logo_path;
+  final String? logo_path;
   @override
   final String name;
   @override
@@ -880,7 +880,7 @@ abstract class _MovieDetailCompanyResponse
     implements MovieDetailCompanyResponse {
   const factory _MovieDetailCompanyResponse(
       {required int id,
-      required String logo_path,
+      required String? logo_path,
       required String name,
       required String origin_country}) = _$_MovieDetailCompanyResponse;
 
@@ -890,7 +890,7 @@ abstract class _MovieDetailCompanyResponse
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  String get logo_path => throw _privateConstructorUsedError;
+  String? get logo_path => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
