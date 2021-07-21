@@ -13,4 +13,5 @@ final appTheme = ThemeData(
   cardColor: grey_1,
   errorColor: red,
   primarySwatch: primarySwatch,
+  splashColor: green_light
 );

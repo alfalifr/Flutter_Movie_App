@@ -1,6 +1,8 @@
 import 'package:dicoding_movie_app/di/vm_di.dart';
 import 'package:dicoding_movie_app/res/theme.dart';
+import 'package:dicoding_movie_app/ui/page/about/about_page.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
+import 'package:dicoding_movie_app/ui/page/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:viewmodel/ui/base/view_model.dart';
@@ -19,12 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: appTheme,
       home: Scaffold(
-        body: ViewModelProvider(
-          creators: [
-            (ctx) => VmDi.listVm,
-          ],
-          child: ListPage(),
-        ),
+        body: SplashPage(),
       ),
     );
   }

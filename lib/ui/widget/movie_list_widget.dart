@@ -143,9 +143,13 @@ class ItemMovieScore extends StatelessWidget {
       builder: (ctx, constr) {
         final scoreStr = getStdScoreStr(score, decimals: 0);
         final scoreText = constr.maxWidth >= 50 ? ThemedText.size0Bold(Text(
-          scoreStr, style: TextStyle(color: Colors.white),
+          scoreStr,
+          style: TextStyle(color: Colors.white),
+          textAlign: TextAlign.center,
         )) : ThemedText.sizeM1Bold(Text(
-          scoreStr, style: TextStyle(color: Colors.white),
+          scoreStr,
+          style: TextStyle(color: Colors.white),
+          textAlign: TextAlign.center,
         ));
 
         prind("ItemMovieScore constr= $constr");

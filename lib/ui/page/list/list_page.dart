@@ -1,6 +1,8 @@
 import 'package:dicoding_movie_app/core/domain/model/movie.dart';
 import 'package:dicoding_movie_app/di/vm_di.dart';
+import 'package:dicoding_movie_app/res/colors.dart';
 import 'package:dicoding_movie_app/res/dimes.dart';
+import 'package:dicoding_movie_app/ui/page/about/about_page.dart';
 import 'package:dicoding_movie_app/ui/page/detail/detail_page.dart';
 import 'package:dicoding_movie_app/ui/page/detail/detail_vm.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_vm.dart';
@@ -39,7 +41,6 @@ class _ListPageState
   bool isChangingPage = false;
   final currentPage = MutableLiveData(0);
   final MutableLiveData<double> maxHeightController = MutableLiveData();
-  final MutableLiveData<double> typeTopMarginController = MutableLiveData();
   final popularTypes = [Const.KEY_MOVIE, Const.KEY_TV,];
   ListVm? vm;
 
@@ -93,7 +94,6 @@ class _ListPageState
     carouselIndexController.dispose();
     currentPage.dispose();
     maxHeightController.dispose();
-    typeTopMarginController.dispose();
     super.dispose();
   }
 
@@ -119,7 +119,7 @@ class _ListPageState
     maxHeightController.value = carouselMaxHeight;
     prind("movieTypeHeight= $movieTypeHeight screenSize= $screenSize sizeCategory= $sizeCategory carouselMaxHeight= $carouselMaxHeight systemPadding= $systemPadding maxHeightController= $maxHeightController");
 
-    return Column(
+    final core = Column(
       children: [
         CollapsingBlur(
           onTap: () {
@@ -136,19 +136,11 @@ class _ListPageState
             liveData: vm!.trendingList,
             builder: (ctx, data) => data != null
                 ? CarouselTrending(
-                  dataList: data,
-                  controllerLiveData: carouselIndexController,
-                  //onItemClick: _toDetailPage,
-                ) : defaultLoading(),
+              dataList: data,
+              controllerLiveData: carouselIndexController,
+              //onItemClick: _toDetailPage,
+            ) : defaultLoading(),
           ),
-        ),
-        LiveDataObserver<double>(
-          liveData: typeTopMarginController,
-          builder: (ctx, margin) {
-            return SizedBox(
-              height: margin,
-            );
-          },
         ),
         _TabBarMovieTypeSpacer(
           scrollController: scrollController,
@@ -181,6 +173,41 @@ class _ListPageState
             ],
           ),
         ),
+      ],
+    );
+
+    final btnNav = SafeArea(
+      child: Container(
+        margin: EdgeInsets.all(10),
+        child: Material(
+          color: Colors.transparent,
+          child: InkResponse(
+            onTap: () => Navigator.push(context, MaterialPageRoute(
+              builder: (ctx) => Scaffold(
+                body: AboutPage(),
+              ),
+            )),
+            highlightShape: BoxShape.circle,
+            child: Ink(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: black_trans_5,
+              ),
+              child: Icon(
+                Icons.info_outline_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    return Stack(
+      children: [
+        core,
+        btnNav,
       ],
     );
   }

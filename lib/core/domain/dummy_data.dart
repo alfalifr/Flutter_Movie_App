@@ -7,6 +7,8 @@ import 'model/movie.dart';
 
 final faker = Faker();
 
+final imgTmdb = ImgData(link: "logo_tmdb.png", isLocal: true);
+
 final dummyImg = ImgData(link: "", isLocal: true);
 
 final dummyDeptList = <String>[

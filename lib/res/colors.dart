@@ -5,6 +5,9 @@ const green_light = Color(0xFF1EA141);
 const green_lighter = Color(0xFFA5FF33);
 const yellow = Color(0xFFFFF100);
 
+const green_trans = Color(0x2D1EA141);
+const yellow_trans = Color(0x2DFFF100);
+
 const red = Color(0xFFEA0C4B);
 
 const grey_1 = Color(0xFFDCDCDC);
