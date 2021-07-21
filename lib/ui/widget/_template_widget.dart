@@ -14,7 +14,6 @@ class CollapsingBlur extends StatefulWidget {
   final ScrollController scrollController;
   final MutableLiveData<double> maxHeightController;
   final Alignment childAlignment;
-  //final double? maxHeight;
   final Widget child;
   final void Function()? onTap;
 
@@ -24,7 +23,6 @@ class CollapsingBlur extends StatefulWidget {
     required this.child,
     this.onTap,
     this.childAlignment = Alignment.center,
-    //this.maxHeight,
   });
 
   @override
@@ -34,7 +32,6 @@ class CollapsingBlur extends StatefulWidget {
     child: child,
     childAlignment: childAlignment,
     onTap: onTap,
-    //maxHeight: maxHeight,
   );
 }
 
@@ -46,7 +43,6 @@ class _CollapsingBlurState
   final MutableLiveData<double> maxHeightController;
   final ScrollController scrollController;
   final Alignment childAlignment;
-  //final double? maxHeight;
   final Widget child;
   final void Function()? onTap;
 
@@ -56,7 +52,6 @@ class _CollapsingBlurState
     required this.child,
     required this.childAlignment,
     required this.onTap,
-    //required this.maxHeight,
   });
 
   bool _isActive = true;
@@ -76,7 +71,6 @@ class _CollapsingBlurState
         final providedHeight = maxHeightController.value;
         if(providedHeight != null) {
           final newOff = providedHeight - scrollController.offset;
-          //prind("newOff = $newOff");
           if (newOff >= 0) {
             controller.value = newOff;
           } else if (controller.value != 0) {
@@ -97,9 +91,6 @@ class _CollapsingBlurState
 
   @override
   Widget build(BuildContext context) {
-    //prind("providedHeight = $providedHeight");
-
-    //var blur = providedHeight;// - (height ?? 0);
     return MultiLiveDataObserver<double>(
       liveDataList: [maxHeightController, controller,],
       isLiveDataOwner: true,
@@ -115,14 +106,13 @@ class _CollapsingBlurState
 
         return height != null ? height > 0 ? Listener(
           onPointerSignal: (signal) async {
-            //prind("signal = $signal");
             if(signal is PointerScrollEvent) {
               final scrollY = signal.scrollDelta.dy;
               final newHeight = scrollController.offset +scrollY;
 
               if(newHeight >= 0) {
                 scrollController.jumpTo(newHeight);
-              }// else {scrollController.jumpTo(newHeight);}
+              }
             }
           },
           child: GestureDetector(
@@ -131,11 +121,10 @@ class _CollapsingBlurState
               prind("dragDetail= $dragDetail");
               final scrollY = dragDetail.delta.dy;
               final newHeight = scrollController.offset -scrollY;
-              //final pageScroll = scrollController.offset;
               prind("scrollY= $scrollY newHeight= $newHeight ");
               if(newHeight >= 0) {
                 scrollController.jumpTo(newHeight);
-              }// else {scrollController.jumpTo(newHeight);}
+              }
             },
             child: ClipRRect(
               child: Container(

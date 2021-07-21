@@ -89,7 +89,6 @@ class _DotIndicatorState
           child: ListView.builder(
             controller: scrollController,
             scrollDirection: Axis.horizontal,
-            //physics: NeverScrollableScrollPhysics(),
             itemCount: count,
             itemBuilder: (ctx, i) => LiveDataObserver<int>(
               liveData: indexController,

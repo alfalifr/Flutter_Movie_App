@@ -5,5 +5,5 @@ import 'package:dicoding_movie_app/core/domain/repo/movie_repo.dart';
 class RepoDi {
   RepoDi._();
 
-  static MovieRepo get movieRepo => MovieRepoImpl(RemoteSrcDi.movieSrc); //MovieRepoDummy.obj; //
+  static MovieRepo get movieRepo => MovieRepoImpl(RemoteSrcDi.movieSrc);
 }

@@ -26,8 +26,6 @@ class MovieDetail with _$MovieDetail {
     required List<ImgData> posters,
   }) = _MovieDetail;
 
-  //factory MovieDetail.fromJson(Map<String, dynamic> map) = _MovieDetail.fromJson;
-
   factory MovieDetail.fromResponse({
     required MovieDetailResponse detail,
     required MovieImageResponse images,

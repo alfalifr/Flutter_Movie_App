@@ -17,12 +17,7 @@ Color getColorPointFromLinearGradient({
 }) {
   if(point <= 0.0) return first;
   if(point >= 1.0) return last;
-/*
-  final diffVal = last.value - first.value;
-  final resVal = (diffVal * point).toInt() + first.value;
-  return Color(resVal);
-//  */
-//  /*
+
   final firstARGB = ARGBColor.fromColor(first);
   final lastARGB = ARGBColor.fromColor(last);
 
@@ -37,7 +32,6 @@ Color getColorPointFromLinearGradient({
   final bRes = (bDiff * point).toInt() + firstARGB.b;
 
   return Color.fromARGB(aRes, rRes, gRes, bRes);
-//   */
 }
 
 

@@ -26,7 +26,6 @@ Widget defaultLoading({
   padding: EdgeInsets.all(10),
   width: width,
   height: height,
-  //color: Manifest.theme.colorPrimary,
   child: Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -63,7 +62,6 @@ Widget defaultNoData({
   padding: EdgeInsets.all(10),
   width: width,
   height: height,
-  //color: red,
   child: Text(
     text ?? Strings.no_data,
     textAlign: TextAlign.center,
@@ -98,7 +96,7 @@ Widget defaultSliverError({
 Widget defaultFormItemImg(String link) => Container(
   margin: EdgeInsets.symmetric(vertical: 5),
   constraints: BoxConstraints(maxHeight: 200,),
-  child: buildImgNetwork(link, ), //SibImages.get("ilstr_mother_carry_baby.png", package: "common",) //
+  child: buildImgNetwork(link, ),
 );
 
 

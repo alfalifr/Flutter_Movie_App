@@ -67,7 +67,6 @@ class ItemPopular extends StatelessWidget {
     );
 
     return Container(
-      //height: imgHeight + 50,
       width: imgWidth,
       child: LayoutBuilder(
         builder: (ctx, constr) {
@@ -129,8 +128,6 @@ class ItemPopular extends StatelessWidget {
 
 
 class ItemMovieScore extends StatelessWidget {
-  //final double? width;
-  //final double? height;
   final num score;
 
   ItemMovieScore({

@@ -70,8 +70,6 @@ class TabGroupMovieType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      //direction: Axis.horizontal,
-      //alignment: WrapAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       children: List<TabItemMovieType>.generate(names.length, (i) => TabItemMovieType(

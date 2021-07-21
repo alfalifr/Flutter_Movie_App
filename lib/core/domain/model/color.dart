@@ -21,8 +21,6 @@ class ARGBColor with _$ARGBColor {
 
     return ARGBColor(a: a, r: r, g: g, b: b);
   }
-
-  //Color toColor() => Color.fromARGB(a, r, g, b);
 }
 
 

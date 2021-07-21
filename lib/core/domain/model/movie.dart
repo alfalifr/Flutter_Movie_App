@@ -20,7 +20,6 @@ class Movie with _$Movie {
     //required num popularity,
     required String type,
   }) = _Movie;
-  //factory Movie.fromJson(Map<String, dynamic> map) = _Movie.fromJson;
 
   factory Movie.fromDataResponse(MovieTrendingDataResponse response, {
     String? type,

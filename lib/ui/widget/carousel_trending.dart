@@ -57,7 +57,6 @@ class _CarouselTrendingState
   @override
   void initState() {
     controllerLiveData.observe(this, (page) async {
-      //prind("_CarouselTrendingState page= $page");
       if(page != null && !_isPageChanging) {
         _isPageChanging = true;
         if(_currentPage < dataList.length-1) {
@@ -82,9 +81,7 @@ class _CarouselTrendingState
           options: CarouselOptions(
             height: double.infinity,
             autoPlay: true,
-            //aspectRatio: 16/5,
             onPageChanged: (page, reason) {
-              //prind("Carousel onPageChanged() page= $page, reason= $reason");
               if(!_isPageChanging) {
                 controllerLiveData.value = page;
               }
@@ -92,7 +89,6 @@ class _CarouselTrendingState
           ),
           items: dataList.map((e) =>
               Container(
-                //margin: EdgeInsets.symmetric(horizontal: 100),
                 child: ItemTrendingMobile.fromData(
                   data: e,
                   captionBottomMargin: 20,
@@ -104,7 +100,6 @@ class _CarouselTrendingState
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            //width: 500,
             margin: EdgeInsets.all(15),
             child: DotIndicator(
               count: dataList.length,

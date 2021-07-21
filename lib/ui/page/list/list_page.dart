@@ -138,7 +138,6 @@ class _ListPageState
                 ? CarouselTrending(
               dataList: data,
               controllerLiveData: carouselIndexController,
-              //onItemClick: _toDetailPage,
             ) : defaultLoading(),
           ),
         ),
@@ -150,7 +149,7 @@ class _ListPageState
           height: movieTypeHeight,
           child: _TabBarMovieType(
             padding: EdgeInsets.only(
-              top: 10, //+systemPadding.top,
+              top: 10,
               bottom: 10,
             ),
             currentPage: currentPage,
@@ -259,7 +258,6 @@ class SingleListPage extends StatelessWidget {
             final gridCrossAxisCount = constr.maxWidth ~/ 206 +1;
             return GridView.builder(
               controller: controller,
-              //physics: NeverScrollableScrollPhysics(),
               itemBuilder: (ctx, i) => InkWell(
                 onTap: onItemClick != null
                     ? () => onItemClick!.call(data[i])
@@ -275,7 +273,6 @@ class SingleListPage extends StatelessWidget {
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 10,
                 mainAxisExtent: 420,
-                //childAspectRatio: 1/10,
               ),
             );
           },
@@ -361,9 +358,6 @@ class __TabBarMovieTypeSpacerState extends State<_TabBarMovieTypeSpacer> {
     );
   }
 }
-
-
-//class _TabBarMovieTypeSpacer extends StatelessWidget {}
 
 
 class _TabBarMovieType extends StatelessWidget {
