@@ -7,6 +7,7 @@ import 'package:dicoding_movie_app/res/img.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
 import 'package:dicoding_movie_app/ui/widget/text_widget.dart';
 import 'package:dicoding_movie_app/util/assets.dart';
+import 'package:dicoding_movie_app/util/const.dart';
 import 'package:dicoding_movie_app/util/ui_util.dart';
 import 'package:flutter/material.dart';
 import 'package:viewmodel/ui/base/view_model.dart';
@@ -71,7 +72,7 @@ class _SplashPageState extends State<SplashPage> {
           ),
           SizedBox(height: 20,),
           ThemedText.size4Bold(Text(
-            "PopCatalogue",
+            Const.APP_NAME,
           )),
         ],
       ),

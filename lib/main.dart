@@ -3,6 +3,7 @@ import 'package:dicoding_movie_app/res/theme.dart';
 import 'package:dicoding_movie_app/ui/page/about/about_page.dart';
 import 'package:dicoding_movie_app/ui/page/list/list_page.dart';
 import 'package:dicoding_movie_app/ui/page/splash/splash_page.dart';
+import 'package:dicoding_movie_app/util/const.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:viewmodel/ui/base/view_model.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: Const.APP_NAME,
       theme: appTheme,
       home: Scaffold(
         body: SplashPage(),
