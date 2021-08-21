@@ -6,8 +6,8 @@ Jika width > height, maka tampilan memasuki mode desktop.
 
 Halaman List dan Detail memiliki tampilan yang disesuaikan untuk tampilan mobile dan desktop.
 Untuk halaman List, perbedaan tampilan mobile dengan desktop terletak pada ukuran carousel.
-Selain itu, jumlah grid pada GridView juga menyesuaikan lebar layar.
 Untuk tampilan desktop, carousel selalu berukuran selayar, sementara untuk tampilan mobile tidak.
+Selain itu, jumlah grid pada GridView juga menyesuaikan lebar layar.
 Untuk halaman Detail, terdapat 2 tampilan berbeda untuk mobile dengan desktop.
 
 Mungkin terdapat bbrp widget yg memiliki ukuran yg panjang seperti genre pada tampilan mobile.

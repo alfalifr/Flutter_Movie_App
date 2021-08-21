@@ -1,6 +1,4 @@
-
 import 'package:dicoding_movie_app/core/data/remote/api/movie_api.dart';
-import 'package:dicoding_movie_app/core/data/remote/model/movie_detail_api_model.dart';
 import 'package:dicoding_movie_app/core/data/remote/model/movie_trending_api_model.dart';
 import 'package:dicoding_movie_app/core/di/api_di.dart';
 import 'package:faker/faker.dart';
